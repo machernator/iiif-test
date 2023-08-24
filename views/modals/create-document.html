@@ -1,0 +1,28 @@
+<div class="modal fade" tabindex="-1" id="modalNewDocument" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header px-4">
+				<h4 class="modal-title">New Document</h4>
+			</div>
+			<div class="modal-body p-4">
+					<form action="{{ 'documentadd' | alias }}" id="formNewDocument" method="post" enctype="multipart/form-data">
+					<div class="mb-3">
+						<label for="newDocumentTitle" class="form-label">{{ _tr('title') }}</label>
+						<input type="text" name="title" id="newDocumentTitle" class="form-control">
+					</div>
+					<div class="mb-3">
+						<label for="newDocumentDescription" class="form-label">{{ _tr('description') }}</label>
+						<textarea rows="5" name="description" id="newDocumentDescription" class="form-control"></textarea>
+					</div>
+					<div class="mb-3">
+						<label for="newDocumentAffiliation" class="form-label">{{ _tr('file') }}</label>
+						<input type="file" name="file" id="documentFile"  class="form-control">
+					</div>
+				</form>
+				</div>
+				<div class="modal-footer p-4">
+					<button class="btn btn-primary text-white w-25" form="formNewDocument">{{ _tr('save') }}</button>
+				</div>
+		</div>
+	</div>
+</div>

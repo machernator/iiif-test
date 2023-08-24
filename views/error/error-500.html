@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Fehler | NHM</title>
+	<link rel="stylesheet" href="{{ @defaultcss.nhm.href }}">
+	<link rel="stylesheet" href="{{ @cssPath . 'error.css' }}">
+</head>
+
+<body>
+	<div class="wrapper d-flex align-items-center justify-content-center vh-100">
+		<div class="row border shadow p-5 rounded-3  bg-light">
+			<div class="col">
+				<h1 class="text-danger text-center">{{ @ERROR.code }} </h1>
+				</check>
+				<h2 class="text-danger text-center">Oh no, this is embarassing! <br>An error occured&nbsp;:( </h2>
+				<check if="{{ @devMode }}">
+					<true>
+						<code>
+							{{ @ERROR.text  }}<br>
+							{{ @ERROR.trace }}
+						</code>
+					</true>
+					<false>
+						<p  class="lead my-5 text-center">{{ @ERROR.status }} {{ @ERROR.code }}</p>
+					</false>
+				</check>
+
+				<div class="text-center"><a href="/" class="btn btn-primary d-inline-block my-5">Go to Homepage</a></div>
+			</div>
+
+		</div>
+	</div>
+
+</body>
+
+</html>

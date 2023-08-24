@@ -1,0 +1,22 @@
+<check if="{{ @appstatus }}">
+	<repeat group="{{ @appstatus }}" value="{{ @entry }}">
+		<check if="{{ array_key_exists('error', @entry) }}">
+			<div class="alert alert-danger d-flex justify-content-between" role="alert">
+				<div>{{ is_array(@entry.error) ? implode('<br>', @entry.error) : @entry.error  }}</div>
+				<button type="button" class="btn-close btn-close-alert" aria-label="Close"></button>
+			</div>
+		</check>
+		<check if="{{ array_key_exists('success', @entry) }}">
+			<div class="alert alert-success d-flex justify-content-between" role="alert">
+				<div>{{ is_array(@entry.success) ? implode('<br>', @entry.success) : @entry.success }}</div>
+				<button type="button" class="btn-close btn-close-alert" aria-label="Close"></button>
+			</div>
+		</check>
+		<check if="{{ array_key_exists('warning', @entry) }}">
+			<div class="alert alert-warning d-flex justify-content-between" role="alert">
+				<div>{{ is_array(@entry.warning) ? implode('<br>', @entry.warning) : @entry.warning  }}</div>
+				<button type="button" class="btn-close btn-close-alert" aria-label="Close"></button>
+			</div>
+		</check>
+	</repeat>
+</check>

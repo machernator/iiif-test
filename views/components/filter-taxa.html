@@ -1,0 +1,17 @@
+<div class="nhm-treeview mb-5">
+	<label for="taxoSearch" class="form-label">Taxa (Beta version) <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Select the biological taxa relevant for the dataset (if e.g. a species-level taxon is selected, all relevant higher taxa are automatically included)."></i></label>
+	<div class="input-group mb-3">
+		<input type="text" class="form-control tree-search" id="taxoSearch" placeholder="Search">
+		<button class="btn btn-secondary btn-clearsearch" type="button" data-clearid="taxoSearch">Reset</button>
+	</div>
+	<div class="current-selection">
+		<ul class="list-unstyled selected-entries sortable-tree-items" id="selectedTaxa">
+		</ul>
+		<button class="btn btn-secondary btn-clearselected mb-3 visually-hidden" type="button">Clear</button>
+	</div>
+	<div class="nhm-data-wrapper">
+		<div id="taxonomyTree" class="jstree" data-treedata="taxaData" data-jsonpath="/taxa">
+			<exclude><!-- <include href="{{ @tpl_components.'filter-taxa-tree.html'}}"> --></exclude>
+		</div>
+	</div>
+</div>

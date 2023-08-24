@@ -1,0 +1,20 @@
+<h2>{route} Edit</h2>
+<check if="{{ @form }}">
+	<true>
+		{{ @form->renderFormOpen() }}
+		<div class="row">
+			<div class="col-lg-7 mb-3">
+				{{ @form->getTokenField()->render() }}
+				<div class="row mb-3">
+					<div class="col">{{ @form->getField('title')->render() }}</div>
+				</div>
+				{{ @form->getField('send')->render() }}
+			</div>
+		</div>
+		</form>
+	</true>
+
+	<false>
+		<p class="alert alert-danger">Error: document cannot be edited. </p>
+	</false>
+</check>

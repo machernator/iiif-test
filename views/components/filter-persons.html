@@ -1,0 +1,19 @@
+<div class="nhm-treeview mb-5">
+	<label for="personsSearch" class="form-label">Creators<sup>*</sup> <i  fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Enter the first characters of the last name and pick the person from the list below; the order of creators can be changed by drag & drop; Creators are all persons involved in creation of the published dataset: multiple persons are possible."></i></label>
+	<div class="input-group mb-3">
+		<input type="text" class="form-control tree-search" id="personsSearch" placeholder="Search">
+		<button class="btn btn-secondary btn-clearsearch" type="button" data-clearid="personsSearch">Reset</button>
+	</div>
+	<div class="current-selection">
+		<ul class="list-unstyled selected-entries sortable-tree-items" id="personsSelection">
+		</ul>
+		<button class="btn btn-secondary btn-clearselected mb-3 visually-hidden" type="button">Clear</button>
+	</div>
+	<div class="nhm-data-wrapper">
+		<div id="personsTree" class="jstree" data-jsonpath="/creators">
+			<exclude>
+				<!-- <include href="{{ @tpl_components.'filter-persons-tree.html'}}"> -->
+			</exclude>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+<div class="actionbar ">
+	<div class="container d-flex align-items-end gap-3 py-3 px-4 ">
+		<div class="col col-md-8 offset-md-4 d-flex">
+			<a type="button"
+				class="btn btn-info btn-icon text-white"
+				href="{{ 'thesaurusadd' | alias }}"
+				id="addThesaurus"
+				aria-label="{{ 'add'  | _tr}}">
+				<svg class=" light">
+					<use href="{{ @icons }}fa-solid.svg#circle-plus"></use>
+				</svg>
+			</a>
+			<a type="button"
+					class="btn btn-danger ms-5 btn-icon ms-auto"
+					onclick="return confirm('{{ _tr("confirmDelete") }}')"
+					href="{{ 'thesaurusdelete' | alias }}"
+					id="deleteThesaurus"
+					aria-label="{{ 'delete' | _tr }}">
+					<svg class="light">
+						<use href="{{ @icons }}fa-solid.svg#trash-can"></use>
+					</svg>
+				</a>
+		</div>
+	</div>
+</div>

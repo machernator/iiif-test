@@ -1,0 +1,26 @@
+{
+	"form": {
+		"method": "post",
+		"action": "",
+		"id": "wizardForm",
+		"errorClass": "invalid-feedback",
+		"fieldErrorClass": "is-invalid",
+		"encType": "multipart/form-data",
+		"tagAttributes": {
+			"novalidate": true,
+			"autocomplete": "off"
+		},
+		"textAfter": "<p class=\"mt-4\"><small>Fields marked with * are required.</small></p>"
+	},
+	"fields": [
+		{
+			"name": "send",
+			"id": "btnSend",
+			"type": "button",
+			"label": "Save",
+			"tagAttributes": {
+				"class": "btn btn-success mt-4 d-block text-white w-100"
+			}
+		}
+	]
+}

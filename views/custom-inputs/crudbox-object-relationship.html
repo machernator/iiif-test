@@ -1,0 +1,130 @@
+<check if="{{ @templateVars.relationship.readOnly == false }}">
+	<true>
+		<div class="g-col-6 mb-4"
+			x-data='{
+				data:{{ @templateVars.relationship.data | raw}},
+				language: "{{ @language }}",
+				currText: ""
+			}'
+			x-init="$nextTick(() => {
+				$store.objectRelation.data = data;
+				$store.objectRelation.language = language;
+				$store.objectRelation.messages = {
+					noCategory: '{{ _tr('msgNoCategory') }}',
+					doubleEntry: '{{ _tr('doubleEntry') }}'
+				}
+			})">
+			<div class="card crudbox accordion" id="{{ @templateVars.relationship.id }}" data-crudboxtype="references">
+				<button class="card-header accordion-button collapsed"
+					data-bs-toggle="collapse"
+					data-bs-target="#cardBody_{{ @templateVars.relationship.id }}"
+					aria-expanded="true"
+					aria-controls="cardBody_{{ @templateVars.relationship.id }}">
+					{{ @templateVars.relationship.title }}
+					<span class="ms-3 badge rounded-pill" :class="{'bg-success-light': data.length > 0, 'bg-secondary': data.length == 0}" x-text="data.length"></span>
+				</button>
+
+				<div class="card-body collapse position-relative" id="cardBody_{{ @templateVars.relationship.id }}">
+					<div id="pidSearch">
+						<div class="mb-4" id="pidSearchForm" data-searchwrapper="1" data-action="{{ 'searchPID' | alias }}">
+							<label for="pidSearchInput" class="mb-2">PID</label>
+							<div class="input-group">
+								<input type="text" id="pidSearchInput" class="form-control" data-searchfield="1" autocomplete="off" data-nosaveonchange="1">
+								<button type="button" class="btn btn-secondary" data-searchbutton="1">{{ _tr('search') }}</button>
+							</div>
+							<div id="pidSearchResult" data-nostore="1" class="collapse nhm-search-result position-absolute border p-4 rounded bg-white" data-error=""></div>
+						</div>
+						<strong x-show="$store.objectRelation.currText" class="d-block mb-2 text-success mb-3" x-text="$store.objectRelation.currText"></strong>
+					</div>
+					<div class="mb-4">
+						<select class="cat-select form-select w-100" data-error="{{ _tr('msgNoCategory') }}" data-nosaveonchange="1" x-ref="relCat">
+							<option value="" data-url="">{{ _tr('category') }}</option>
+							<repeat group="{{ @templateVars.relationship.categories }}" value="{{ @category }}">
+								<option value="{{ @category.RELCAT_ID }}">{{ @category['category_' . @language] }}</option>
+							</repeat>
+						</select>
+					</div>
+					<div class="mb-4">
+						<button type="button" class="btn btn-secondary w-100" @click="$store.objectRelation.addRelationship($refs.relCat)">{{ _tr('add') }}</button>
+					</div>
+					<hr class="mb-4">
+
+					<table class="table table-striped w-100 mb-4">
+						<colgroup>
+							<col style="width: 94%">
+							<col style="width: 6%">
+						</colgroup>
+						<tbody>
+							<template x-for="(rel, index) in data">
+								<tr>
+									<td class="align-top ps-3 pt-3">
+										<strong x-text="rel['category_' + language]"></strong>: <br>
+										<a :href="'/object/' + rel.OBJ_ID_dest" x-text="rel.PID_full" class="text-decoration-none"></a>
+									</td>
+									<td class="align-top ps-3">
+										<input type="hidden" :name="`object_relationship[${index}][OBJ_ID_dest]`" :value="rel.OBJ_ID_dest" form="{{ @templateVars.relationship.formId }}">
+										<input type="hidden" :name="`object_relationship[${index}][RELCAT_ID]`" :value="rel.RELCAT_ID" form="{{ @templateVars.relationship.formId }}">
+										<button type="button" class="btn lh-1 fs-3 text-danger pt-0" title="{{ _tr('delete') }}" @click="$store.objectRelation.deleteRelationship(index)">&times;</button>
+									</td>
+								</tr>
+							</template>
+						</tbody>
+					</table>
+
+					<check if="{{ !empty(@templateVars.relationship.relationsFrom) }}">
+						<ul class="list-unstyled striped">
+							<repeat group="{{ @templateVars.relationship.relationsFrom }}" value="{{ @rel }}">
+								<li class="mb-2">
+									<pre>{{ @rel | print_r }}</pre>
+									<small>
+										<strong>{{ @rel['category_' . @language] }}</strong>:
+										<a href="{{ 'object', 'objId=' . @rel.OBJ_ID_dest | alias}}">{{ @rel.PID_full }}</a>
+									</small>
+								</li>
+							</repeat>
+						</ul>
+					</check>
+				</div>
+			</div>
+		</div>
+	</true>
+	<false>
+		<div class="g-col-6 mb-4"
+			x-data='{
+				data:{{ @templateVars.relationship.data | raw}},
+				language: "{{ @language }}",
+				currText: ""
+			}'>
+			<div class="card crudbox accordion" id="{{ @templateVars.relationship.id }}" data-crudboxtype="references">
+				<button class="card-header accordion-button collapsed"
+					data-bs-toggle="collapse"
+					data-bs-target="#cardBody_{{ @templateVars.relationship.id }}"
+					aria-expanded="true"
+					aria-controls="cardBody_{{ @templateVars.relationship.id }}">
+					{{ @templateVars.relationship.title }}
+					<span class="ms-3 badge rounded-pill" :class="{'bg-success-light': data.length > 0, 'bg-secondary': data.length == 0}" x-text="data.length"></span>
+				</button>
+
+				<div class="card-body collapse position-relative" id="cardBody_{{ @templateVars.relationship.id }}">
+					<ul class="list-unstyled striped mb-5">
+						<template x-for="(rel, index) in data">
+							<li class="p-3">
+								<strong x-text="rel['category_' + language]"></strong>: <br>
+								<a :href="'/object/' + rel.OBJ_ID_dest" x-text="rel.PID_full" class="text-decoration-none"></a>
+							</li>
+						</template>
+					</ul>
+					<ul class="list-unstyled striped">
+						<repeat group="{{ @templateVars.relationship.relationsFrom }}" value="{{ @rel }}">
+							<li class="mb-2">
+								<small>
+									<strong>{{ @rel['category_' . @language] }}</strong>:
+									<a href="{{ 'object', 'objId=' . @rel.OBJ_ID_dest | alias}}">{{ @rel.PID_full }}</a>
+								</small>
+							</li>
+						</repeat>
+					</ul>
+				</div>
+			</div>
+	</false>
+</check>

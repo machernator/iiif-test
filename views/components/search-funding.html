@@ -1,0 +1,47 @@
+<repeat group="{{ @fundings }}" key="{{ @key }}" value="{{ @value }}" counter="{{ @count }}">
+	<fieldset class="funding-group striped p-4">
+		<div class="nhm-data-search mb-5" data-idprefix="fundings{{ @count }}" data-searchurl="/funding/search" data-choice="single">
+			<input type="hidden" name="fundingagency[]" data-id="fundings{{ @count }}" id="fundings_{{ @count }}">
+			<label for="fundingsSearch_{{ @count }}" class="form-label">Funding Agency, select one <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Search funding agency in list (type at least 3 characters). You can only select one. To add multiple Funding agencies/Projects use the &quot;Add another project&quot;-button at the bottom of the list. If your funding agency is not listed, please contact a data steward."></i></label>
+			<div class="current-selection">
+				<ul class="list-unstyled selected-entries sortable-search-items" data-id="fundings{{ @count }}Selection" id="fundingsSelection_{{ @count }}" data-clearoncopy="true">
+					<check if="{{ @value.FUND_ID }}">
+						<li data-entryid="{{ @value.FUND_ID }}" data-text="{{ @value.AgencyName }}">
+							<button type="button" class="btn btn-sm btn-close" data-entryid="{{ @value.FUND_ID }}"></button>
+							{{ @value.AgencyName }}
+						</li>
+					</check>
+				</ul>
+				<button class="btn btn-secondary btn-clearselected mb-3 visually-hidden" type="button">Clear</button>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control data-search" data-id="fundings{{ @count }}Search" id="fundingsSearch_{{ @count }}" placeholder="At least 3 characters">
+				<button class="btn btn-secondary btn-clearsearch" type="button" data-clearid="fundingsSearch" data-id="fundings{{ @count }}Clear" id="fundingsClear_{{ @count }}">Clear</button>
+			</div>
+
+			<div class="nhm-search-wrapper">
+				<div class="p-2 bg-light nhm-data-wrapper">
+					<ul class="nhm-data-list list-unstyled" data-id="fundings{{ @count }}Results" id="fundingsResults_{{ @count }}"  data-clearoncopy="true"></ul>
+				</div>
+			</div>
+		<div class="my-5">
+			<label for="fundingProgram_0">Funding programme <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Where relevant you may enter the name of the specific funding programme here (free text, optional)"></i></label>
+			<input type="text" class="form-control" name="fundingprogram[]" id="fundingProgram_0"
+				value="{{ @value.fund_program ?? ''}}">
+		</div>
+		<div class="mb-5">
+			<label for="projectNumber_0">Project identifier <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Where relevant you may enter the funding agency project number here (free text, optional)"></i></label>
+			<input type="text" class="form-control" name="projectidentifier[]" id="projectNumber_0"
+				value="{{ @value.project_id ?? ''}}">
+		</div>
+		<div class="mb-4">
+			<label for="projectTitle_0">Project title <i class="fa fa-info-circle" aria-hidden="true" data-bs-toggle="tooltip" data-bs-placement="top" title="Please enter the title of your project (free text, optional)"></i></label>
+			<input type="text" class="form-control" name="projecttitle[]" id="projectTitle_0"
+				value="{{ @value.project_title ?? ''}}">
+		</div>
+		<div class="d-flex justify-content-end gap2 col-12">
+			<button type="button" class="btn btn-danger btn-duplicate-delete"
+				data-deleteparent=".funding-group">Delete</button>
+		</div>
+	</fieldset>
+</repeat>

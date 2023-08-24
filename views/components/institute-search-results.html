@@ -1,0 +1,23 @@
+<check if="{{ empty(@data) }}">
+	<true>
+		<p class="alert alert-warning">{{ _tr('noResult') }}</p>
+	</true>
+	<false>
+		<table class="table table-striped table-sm table-hover">
+			<tr>
+				<th>Name</th>
+				<th>Type</th>
+				<th>Country</th>
+			</tr>
+			<repeat group="{{ @data }}" value="{{ @entry }}">
+				<tr data-entryid="{{ @entry.INST_ID }}" data-entryname="{{ @entry.institute_name }}" >
+					<td>{{ @entry.institute_name_marked | raw }}</td>
+					<td>{{ @entry.institute_type }}</td>
+					<td>{{ @entry.country_code }}</td>
+				</tr>
+
+
+			</repeat>
+		</table>
+	</false>
+</check>

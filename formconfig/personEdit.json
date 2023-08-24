@@ -1,0 +1,176 @@
+{
+	"form": {
+		"method": "post",
+		"action": "",
+		"id": "personForm",
+		"errorClass": "invalid-feedback",
+		"fieldErrorClass": "is-invalid",
+		"encType": "multipart/form-data",
+		"tagAttributes": {
+			"novalidate": true,
+			"autocomplete": "off"
+		},
+		"textAfter": "<p class=\"mt-4\"><small>Fields marked with * are required.</small></p>"
+	},
+	"fields": [
+		{
+			"name": "PERS_ID",
+			"id": "personId",
+			"type": "hidden",
+			"label": "id",
+			"validation": "integer"
+		},
+		{
+			"name": "title",
+			"id": "personTitle",
+			"type": "text",
+			"label": "title",
+			"validation": "min_len,2|max_len,50",
+			"tagAttributes": {
+				"minlength": 2,
+				"maxlength": 10
+			}
+		},
+		{
+			"name": "first_name",
+			"id": "personFirstName",
+			"type": "text",
+			"label": "firstName",
+			"validation": "min_len,2|max_len,50",
+			"required": false,
+			"tagAttributes": {
+				"minlength": 2,
+				"maxlength": 50,
+				"pattern": ".{2,50}"
+			}
+		},
+		{
+			"name": "middle_name",
+			"id": "personMiddleName",
+			"type": "text",
+			"label": "middleName",
+			"validation": "max_len,50",
+			"tagAttributes": {
+				"maxlength": 50,
+				"pattern": ".{0,50}"
+			}
+		},
+		{
+			"name": "last_name",
+			"id": "personLastName",
+			"type": "text",
+			"label": "lastName",
+			"validation": "min_len,2|max_len,50",
+			"required": true,
+			"tagAttributes": {
+				"minlength": 2,
+				"maxlength": 50,
+				"pattern": ".{2,50}"
+			}
+		},
+		{
+			"name": "title_post",
+			"id": "personTitlePost",
+			"type": "text",
+			"label": "titlePost",
+			"dataType": "text",
+			"validation": "max_len,50",
+			"tagAttributes": {
+				"maxlength": 50,
+				"pattern": ".{0,50}"
+			}
+		},
+		{
+			"name": "sex",
+			"id": "personSex",
+			"type": "radio",
+			"label": "sex",
+			"required": false,
+			"inline": true,
+			"options": [
+				{
+					"value": "F",
+					"text": "female"
+				},
+				{
+					"value": "M",
+					"text": "male"
+				},
+				{
+					"value": "D",
+					"text": "divers"
+				}
+			],
+			"tagAttributes": {
+				"class": "mb-4"
+			}
+		},
+		{
+			"name": "date_birth",
+			"id": "dateBirth",
+			"type": "date",
+			"label": "birthDate",
+			"validation": ""
+		},
+		{
+			"name": "date_death",
+			"id": "dateDeath",
+			"type": "date",
+			"label": "deathDate",
+			"validation": ""
+		},
+		{
+			"name": "comment",
+			"id": "personComment",
+			"type": "textarea",
+			"label": "comment",
+			"validation": "max_len,4000",
+			"tagAttributes": {
+				"maxlength": 4000,
+				"rows": 6,
+				"pattern": "^(\\d{4}-){3}\\d{3}(\\d|X)$",
+				"class": "mb-5"
+			}
+		},
+		{
+			"name": "INST_ID",
+			"id": "personInstId",
+			"type": "custom",
+			"label": "institute",
+			"validation": "integer",
+			"template": "../views/custom-inputs/institutes.html",
+			"templateVars": {
+				"id": "personInstitute",
+				"prefix": "personInstitute",
+				"searchurl": "/funding/search",
+				"choice": "single",
+				"placeholder": "Enter at least 3 characters"
+			}
+		},
+		{
+			"name": "alias",
+			"id": "personAlias",
+			"type": "custom",
+			"label": "Alias",
+			"validation": "integer",
+			"template": "../views/custom-inputs/crudbox.html"
+		},
+		{
+			"name": "references",
+			"id": "personReferences",
+			"type": "custom",
+			"label": "references",
+			"validation": "integer",
+			"template": "../views/custom-inputs/crudbox-external-refs.html"
+		},
+		{
+			"name": "send",
+			"id": "btnSend",
+			"type": "button",
+			"label": "Save",
+			"tagAttributes": {
+				"class": "btn btn-success mt-4 d-block text-white w-100"
+			}
+		}
+	]
+}

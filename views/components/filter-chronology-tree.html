@@ -1,0 +1,8 @@
+<ul>
+	<repeat group="@chronology" value="@chron">
+		<li data-entryid="{{ @chron.ID }}">
+		{{@chron.name}}
+		<include href="{{ @tpl_components.'filter-chronology-tree.html'}}" if="{{ array_key_exists('children', @chron)}}" with="chronology={{@chron.children}}"/>
+		</li>
+	</repeat>
+</ul>

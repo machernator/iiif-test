@@ -1,0 +1,30 @@
+<div id="personSearch"
+	data-msgdouble="{{ 'doubleEntry' | _tr }}"
+	@resetsearch.window="reset()"
+	x-init="$nextTick(() => msgDoubleEntry = $el.dataset.msgdouble)">
+	<div class="mb-4" data-searchwrapper="1" data-action="{{ 'personsearch' | alias }}">
+	<label for="personSearchInput">{{ _tr('search') }}</label>
+		<div class="input-group">
+			<input type="text"
+				class="form-control"
+				data-searchfield="1"
+				autocomplete="off"
+				data-nosaveonchange="1"
+				id="personSearchInput">
+				<button type="button" class="btn btn-secondary btn-icon" data-searchbutton="1" title="{{ _tr('search') }}"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1.5"><path d="M24 2v44" fill="none" stroke="#000" stroke-width="5.14" transform="rotate(-45 55.15 5.44) scale(.83333 .5039)"/><circle cx="24" cy="23" r="21" fill="none" stroke="#000" stroke-width="5.83" transform="matrix(.64286 0 0 .64286 1.571 1.714)"/></svg></button>
+		</div>
+		<div id="personSearchResult" data-nostore="1" class="collapse nhm-search-result position-absolute border p-4 rounded bg-white" @click="addEntry($event)"></div>
+	</div>
+
+	<div id="personSelection" class="mb-4">
+		<ul class="list-group crudbox-entries list-unstyled striped" data-empty-text="No entries yet" data-crudboxlist="1">
+			<template x-for="(entry, index) in person">
+				<li class="mb-1 crudbox-entry d-flex justify-content-between align-items-center border-bottom border-bottom py-1">
+					<input type="hidden" name="person[]" :value="entry.id">
+					<span class="crudbox-entry-text px-3" x-text="entry.name"></span>
+					<button type="button" class="btn lh-1 fs-3 text-danger" data-delete="1" title="Delete" @click="deleteEntry(index)">×</button>
+				</li>
+			</template>
+		</ul>
+	</div>
+</div>

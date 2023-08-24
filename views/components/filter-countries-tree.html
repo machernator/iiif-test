@@ -1,0 +1,8 @@
+<ul>
+	<repeat group="@regions" value="@region">
+		<li data-entryid="{{ @region.ID }}">
+		{{@region.name}}
+		<include href="{{ @tpl_components.'filter-countries-tree.html'}}" if="{{ array_key_exists('children', @region)}}" with="regions={{@region.children}}"/>
+		</li>
+	</repeat>
+</ul>

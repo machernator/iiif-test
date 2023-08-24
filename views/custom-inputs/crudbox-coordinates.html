@@ -1,0 +1,177 @@
+<check if="{{ @templateVars.coordinates.readOnly == false }}">
+	<true>
+		<div class="g-col-6 mb-4"
+			x-data="crudboxCoordinates"
+			x-init="
+				latitude={{ @templateVars.coordinates.data.latitude ??  'null' }};
+				longitude={{ @templateVars.coordinates.data.longitude ?? 'null' }};
+				initMap();
+				$nextTick(() => initFields())">
+			<div class="card crudbox w-100" id="{{ @templateVars.coordinates.id }}" data-crudboxtype="references">
+				<div class="card-header d-flex justify-content-between align-items-center">
+					{{ @templateVars.coordinates.title }}
+				</div>
+				<div class="card-body position-relative">
+					<div class="row mb-3">
+						<div class="col col-md-6">
+							<label for="latitude" class="form-label">{{ 'latitude' | _tr }}</label>
+							<input type="text" class="form-control" id="latitude" name="latitude" form="objectForm"
+								x-model="latitude"
+								@change="decimalToDegrees">
+						</div>
+						<div class="col col-md-6">
+							<label for="longitude" class="form-label">{{ 'longitude' | _tr }}</label>
+							<input type="text" class="form-control" id="longitude" name="longitude" form="objectForm"
+								x-model="longitude"
+								@change="decimalToDegrees">
+						</div>
+					</div>
+					<table class="table">
+						<colgroup>
+							<col style="width: 20%">
+							<col style="width: 20%">
+							<col style="width: 20%">
+							<col style="width: 40%">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>Deg</th>
+								<th>Min</th>
+								<th>Sec</th>
+								<th>Dir</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<input type="text" class="form-control" id="latDeg" name="lat-deg" aria-label="{{ 'degrees' | _tr }}"
+										data-nosaveonchange="1"
+										x-model="degNS"
+										@keyup="parseLocaleFloat"
+										@change="DMSToDecimal">
+								</td>
+								<td>
+									<input type="text" class="form-control" id="latMin" aria-label="{{ 'minutes' | _tr }}"
+										data-nosaveonchange="1"
+										x-model="minNS"
+										@keyup="parseLocaleFloat"
+										@change="DMSToDecimal">
+								</td>
+								<td>
+									<input type="text" class="form-control" id="latSec" aria-label="{{ 'seconds' | _tr }}"
+										data-nosaveonchange="1"
+										x-model="secNS"
+										@keyup="parseLocaleFloat"
+										@change="DMSToDecimal">
+								</td>
+								<td>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="lat-dir" id="latDirN" value="N"
+											data-nosaveonchange="1"
+											x-model="dirNS"
+											@change="DMSToDecimal">
+										<label class="form-check-label" for="latDirN">N</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="lat-dir" id="latDirS" value="S"
+											data-nosaveonchange="1"
+											x-model="dirNS"
+											@change="DMSToDecimal">
+										<label class="form-check-label" for="latDirS">S</label>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="text" class="form-control" id="longDeg" aria-label="{{ 'degrees' | _tr }}"
+										data-nosaveonchange="1"
+										x-model="degEW"
+										@keyup="parseLocaleFloat"
+										@change="DMSToDecimal">
+								</td>
+								<td>
+									<input type="text" class="form-control" id="longMin" aria-label="{{ 'minutes' | _tr }}"
+										data-nosaveonchange="1"
+										x-model="minEW"
+										@keyup="parseLocaleFloat"
+										@change="DMSToDecimal">
+								</td>
+								<td>
+									<input type="text" class="form-control" id="longSec" aria-label="{{ 'seconds' | _tr }}"
+										data-nosaveonchange="1"
+										x-model="secEW"
+										@keyup="parseLocaleFloat"
+										@change="DMSToDecimal">
+								</td>
+								<td>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="long-dir" id="longDirE" value="E"
+											data-nosaveonchange="1"
+											x-model="dirEW"
+											@change="DMSToDecimal">
+										<label class="form-check-label" for="longDirE">E</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="long-dir" id="longDirW" value="W"
+											data-nosaveonchange="1"
+											x-model="dirEW"
+											@change="DMSToDecimal">
+										<label class="form-check-label" for="longDirW">W</label>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<template x-if="longitude && latitude" id="coordinatesMapTpl">
+						<div class="mb-5">
+							<div class="ratio ratio-1x1 mb-2">
+								<iframe frameborder="0" scrolling="no" :src="`https://www.openstreetmap.org/export/embed.html?bbox=${Number.parseFloat(longitude - 0.005).toFixed(6) },${Number.parseFloat(latitude - 0.0125).toFixed(6)},${Number.parseFloat(longitude + 0.005).toFixed(6)},${Number.parseFloat(latitude + 0.0125).toFixed(6)}&amp;layer=mapnik&amp;marker=${latitude},${longitude}`" style="border: 1px solid #ced4da; width: 100%; border-radius: 2;"></iframe>
+							</div>
+							<small class="d-flex justify-content-end"><a :href="`https://www.openstreetmap.org/?mlat=${latitude}&amp;mlon=${longitude}#map=15/${Number.parseFloat(latitude).toFixed(4)}/${Number.parseFloat(longitude).toFixed(4)}`" target="_blank">{{ _tr('largerMap') }}</a></small>
+						</div>
+					</template>
+					<exclude>
+						<check if="{{ @templateVars.coordinates.data.latitude && @templateVars.coordinates.data.longitude }}">
+							<div class="mb-5">
+								<div class="ratio ratio-1x1 mb-2">
+									<iframe frameborder="0" scrolling="no" src="https://www.openstreetmap.org/export/embed.html?bbox={{ @templateVars.coordinates.data.longitude - 0.005 }},{{ @templateVars.coordinates.data.latitude - 0.0125 }},{{ @templateVars.coordinates.data.longitude + 0.005 }},{{ @templateVars.coordinates.data.latitude + 0.0125 }}&amp;layer=mapnik&amp;marker={{ @templateVars.coordinates.data.latitude }},{{ @templateVars.coordinates.data.longitude }}" style="border: 1px solid #ced4da; width: 100%; border-radius: 2;"></iframe>
+								</div>
+								<small class="d-flex justify-content-end"><a href="https://www.openstreetmap.org/?mlat={{ @templateVars.coordinates.data.latitude }}&amp;mlon={{ @templateVars.coordinates.data.longitude }}#map=15/{{ round(@templateVars.coordinates.data.latitude, 4) }}/{{ round(@templateVars.coordinates.data.longitude, 4) }}" target="_blank">{{ _tr('largerMap') }}</a></small>
+							</div>
+						</check>
+					</exclude>
+				</div>
+			</div>
+		</div>
+	</true>
+	<false>
+		<div class="g-col-6 mb-4">
+			<div class="card crudbox w-100" id="{{ @templateVars.coordinates.id }}" data-crudboxtype="references">
+				<div class="card-header d-flex justify-content-between align-items-center">
+					{{ @templateVars.coordinates.title }}
+				</div>
+				<div class="card-body position-relative">
+					<div class="row mb-3">
+						<div class="col col-md-6">
+							<label for="latitude" class="form-label">{{ 'latitude' | _tr }}</label>
+							<input type="text" class="form-control" disabled id="latitude" value="{{ @templateVars.coordinates.data.latitude ??  '---' }}">
+						</div>
+						<div class="col col-md-6">
+							<label for="longitude" class="form-label">{{ 'longitude' | _tr }}</label>
+							<input type="text" class="form-control" disabled id="longitude" value="{{ @templateVars.coordinates.data.longitude ??  '---' }}">
+						</div>
+					</div>
+					<check if="{{ @templateVars.coordinates.data.latitude && @templateVars.coordinates.data.longitude }}">
+						<div class="mb-5">
+							<div class="ratio ratio-1x1 mb-2">
+								<iframe frameborder="0" scrolling="no" src="https://www.openstreetmap.org/export/embed.html?bbox={{ @templateVars.coordinates.data.longitude - 0.005 }},{{ @templateVars.coordinates.data.latitude - 0.0125 }},{{ @templateVars.coordinates.data.longitude + 0.005 }},{{ @templateVars.coordinates.data.latitude + 0.0125 }}&amp;layer=mapnik&amp;marker={{ @templateVars.coordinates.data.latitude }},{{ @templateVars.coordinates.data.longitude }}" style="border: 1px solid #ced4da; width: 100%; border-radius: 2;"></iframe>
+							</div>
+							<small class="d-flex justify-content-end"><a href="https://www.openstreetmap.org/?mlat={{ @templateVars.coordinates.data.latitude }}&amp;mlon={{ @templateVars.coordinates.data.longitude }}#map=15/{{ round(@templateVars.coordinates.data.latitude, 4) }}/{{ round(@templateVars.coordinates.data.longitude, 4) }}" target="_blank">{{ _tr('largerMap') }}</a></small>
+						</div>
+					</check>
+				</div>
+			</div>
+		</div>
+
+	</false>
+</check>

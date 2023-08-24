@@ -1,0 +1,12 @@
+[globals]
+dbServer = 124.456.789.123
+dbDatabase = Collections
+dbOptions[CharacterSet] = UTF-8
+dbOptions[TrustServerCertificate] = 1
+dbOptions[APP]=applicationApp
+; optional!
+dbUser = user
+dbPassword = "password"
+
+; dev or prod
+appMode = "dev"

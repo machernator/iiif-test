@@ -1,0 +1,81 @@
+<div class="mb-4"
+	x-data='{
+		institutes: {{ json_encode(@templateVars.crudBox.data) }}
+	}'
+	x-init="$nextTick(() => {
+		$store.personInstitutes.institutes = institutes ?? [];
+	})">
+	<div class="card crudbox w-100" id="{{ @templateVars.crudBox.id }}" data-crudboxtype="search-tree">
+		<div class="card-header d-flex justify-content-between align-items-center">
+			<h5>{{ @templateVars.crudBox.title }} <i class="fa fa-info-circle fs-6" aria-hidden="true"
+					data-bs-toggle="tooltip" data-bs-placement="top"
+					title="The start and end dates are optional. They should be set to the time when the current person was associated with the selected institution."></i>
+		</div>
+		<div class="card-body position-relative">
+			<div class="mb-3 row">
+				<div class="col">
+					<label for="instDateStart" class="form-label">{{ _tr('active') }} {{ _tr('from') }}</label>
+					<input type="date" id="instDateStart" class="form-control" x-ref="dateStart">
+				</div>
+				<div class="col">
+					<label for="instDateEnd" class="form-label">{{ _tr('active') }} {{ _tr('to')}}</label>
+					<input type="date" id="instDateEnd" class="form-control" x-ref="dateEnd">
+				</div>
+			</div>
+			<div class="mb-5" id="{{ @templateVars.crudBox.id . 'Search' }}">
+				<label for="{{ @templateVars.crudBox.id . 'SearchInput' }}">{{ _tr('institute') }}</label>
+				<div class="mb-4" id="{{ @templateVars.crudBox.id . 'SearchForm'}}" data-searchwrapper="1" data-action="{{ @templateVars.crudBox.searchUrl }}">
+					<div class="input-group">
+						<input type="text" id="{{ @templateVars.crudBox.id . 'SearchInput' }}" class="form-control" data-searchfield="1" autocomplete="new-password" placeholder="{{ _tr('search') }}">
+						<button type="button" class="btn btn-secondary" data-searchbutton="1">{{ _tr('search') }}</button>
+					</div>
+					<div id="{{ @templateVars.crudBox.id }}SearchResult" data-nostore="1" class="collapse nhm-search-result position-absolute border p-4 rounded bg-white">
+					</div>
+					<strong x-show="$store.personInstitutes.currText" class="d-block mb-2 text-success mb-3" x-text="$store.personInstitutes.currText"></strong>
+				</div>
+			</div>
+			<div class="mb-4">
+				<button type="button" class="btn btn-secondary w-100" @click="$store.personInstitutes.addInstitute($refs.dateStart, $refs.dateEnd)">{{ _tr('add') }}</button>
+			</div>
+
+			<hr class="mb-5">
+
+			<table class="table table-striped w-100 mb-4" data-empty-text="{{ _tr('noEntries') }}" data-crudboxlist="1" id="instCrudboxList">
+				<colgroup>
+					<col style="width: 88%">
+					<col style="width: 6%">
+					<col style="width: 6%">
+				</colgroup>
+				<tbody>
+					<template x-for="(entry, index) in institutes">
+						<tr class="crudbox-entry">
+							<td class="align-top">
+								<div x-html="entry.institute_name"></div>
+								<span x-show="entry.date_start" x-text="entry.date_start"></span>
+								<span x-show="entry.date_end" x-text="entry.date_end"></span>
+							</td>
+							<td class="align-top">
+								<span class="form-check form-switch">
+									<input type="hidden" :name="`institutes[${index}][is_preferred]`" value="0">
+									<input type="checkbox" :name="`institutes[${index}][is_preferred]`" class="form-check-input"
+										role="switch"
+										data-preferredswitch="1"
+										value="1"
+										data-instid="entry.INST_ID"
+										:checked="entry.is_preferred == 1 ? true : false"
+										@change="$store.personInstitutes.setIsPreferred(index, $el)">
+								</span>
+							</td>
+							<td class="align-top">
+								<input type="hidden" :name="`institutes[${index}][INST_ID]`" 		:value="entry.INST_ID" 		form="{{ @templateVars.crudBox.formId }}">
+								<input type="hidden" :name="`institutes[${index}][date_start]`" 	:value="entry.date_start" 	form="{{ @templateVars.crudBox.formId }}">
+								<input type="hidden" :name="`institutes[${index}][date_end]`" 		:value="entry.date_end" 	form="{{ @templateVars.crudBox.formId }}">
+								<button type="button" class="btn lh-1 fs-3 text-danger pt-0" data-delete="1" title="{{ _tr('delete') }}">&times;</button>
+							</td>
+						</tr>
+					</template>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

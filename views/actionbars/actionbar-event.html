@@ -1,0 +1,27 @@
+<div class="actionbar ">
+	<div class="container d-flex align-items-end gap-3 py-3 px-4 ">
+		<div class="col col-md-8 offset-md-4  d-flex">
+			<a type="button"
+				class="btn btn-info btn-icon text-white"
+				href="{{ 'eventadd' | alias }}"
+				id="addEvent"
+				aria-label="{{ _tr('add') }}">
+				<svg class=" light">
+					<use href="{{ @icons }}fa-solid.svg#circle-plus"></use>
+				</svg>
+			</a>
+			<check if="{{ isset(@evid) }}">
+				<a type="button"
+					class="btn btn-danger ms-5 btn-icon ms-auto"
+					onclick="return confirm('{{ _tr("confirmDelete") }}')"
+					href="{{ 'eventdelete' | alias }}"
+					id="deleteEvent"
+					aria-label="{{ _tr('delete') }}">
+					<svg class="light">
+						<use href="{{ @icons }}fa-solid.svg#trash-can"></use>
+					</svg>
+				</a>
+			</check>
+		</div>
+	</div>
+</div>

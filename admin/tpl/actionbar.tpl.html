@@ -1,0 +1,10 @@
+<div class="actionbar ">
+	<div class="container d-flex align-items-end gap-3 py-3 px-4 ">
+		<div class="col col-md-8 offset-md-4">
+			<a type="button" class="btn btn-info text-white" href="{{ '{route}add' | alias }}" id="add{routeUC1}">{{ _tr('add') }}</a>
+			<check if="{{ isset(@evid) }}">
+				<a type="button" class="btn btn-danger ms-5" onclick="return confirm('{{  _tr('confirmDelete')  }}')" href="{{ '{route}delete' | alias }}" id="delete{routeUC1}">{{ _tr('delete') }}</a>
+			</check>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+<label for="{{ @formField->id }}" class="form-label">{{ @formField->label }}</label>
+<div class="input-group">
+	<input type="text" name="{{ @formField->name }}" id="{{ @formField->id }}" value="{{ @templateVars.value !== null ? round(@templateVars.value, 2) : '' }}" class="form-control w-50 text-end"{{ @formField->readOnly ? ' disabled' : '' }}>
+	<select name="fields[{{ @formField->id }}][unit_id]" id="{{ @formField->id }}_unit" class="form-select"{{ @formField->readOnly ? ' disabled' : '' }}>
+		<option value="">====</option>
+		<repeat group="{{ @templateVars.unit_lookup }}" value="{{ @lookup }}">
+			<option value="{{ @lookup.UNIT_ID }}"{{ @templateVars.unit_id === @lookup.UNIT_ID ? ' selected' : ''  }}>{{ @lookup.unit_name }}</option>
+		</repeat>
+	</select>
+</div>

@@ -1,0 +1,14 @@
+<check if="{{ empty(@data) }}">
+	<true>
+		<p class="alert alert-warning">{{ _tr('noResult') }}</p>
+	</true>
+	<false>
+		<ul class="list-unstyled list-striped">
+			<repeat group="{{ @data }}" value="{{ @entry }}">
+				<li data-entryid="{{ @entry.id }}" data-entryname="{{ @entry.text }}" class="ellipsize-left">
+					{{ @entry.text }}
+				</li>
+			</repeat>
+		</ul>
+	</false>
+</check>

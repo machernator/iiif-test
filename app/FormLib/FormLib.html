@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+
+<h1 id="formlib">FormLib</h1>
+
+<p>A Form Library for displaying and validating forms. Depends on CSRF.php and <a href="https://github.com/Wixel/GUMP">wixel/gump</a> Library.</p>
+
+<p>There are two main Classes:</p>
+
+<ul>
+<li>Form.php</li>
+<li>Input.php</li>
+</ul>
+
+<p>Form.php receives a configuration array and generates all its input fields. It can validate either POST or GET data with the help of GUMP validation library. Its render method displays the whole form.</p>
+
+<p>Input and its derived classes display the fields with labels, descriptions and errors.</p>
+
+<p>Render can be called to render the whole field. Inidividual render methods are available for rendering</p>
+
+<ul>
+<li>label</li>
+<li>field</li>
+<li>error</li>
+<li>description</li>
+</ul>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>The form tag itself and the individual fields are initialised by some neutral defaults and the passed configuration.</p>
+
+<h3 id="formconfiguration">Form configuration</h3>
+
+<table>
+<colgroup>
+<col />
+<col />
+<col />
+<col />
+</colgroup>
+
+<thead>
+<tr>
+	<th>Name </th>
+	<th> Default </th>
+	<th>Required</th>
+	<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td>id </td>
+	<td> &#8220;&#8221; </td>
+	<td> yes </td>
+	<td> html id of the form</td>
+</tr>
+<tr>
+	<td>action </td>
+	<td> &#8220;&#8221; </td>
+	<td> no</td>
+	<td> URL of script to send the form to</td>
+</tr>
+<tr>
+	<td>method </td>
+	<td> post </td>
+	<td> no </td>
+	<td> get or post http method</td>
+</tr>
+<tr>
+	<td>enctype </td>
+	<td> &#8220;&#8221; </td>
+	<td> no </td>
+	<td> set to mulitpart/form-data when uploading files</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>
+

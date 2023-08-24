@@ -1,0 +1,39 @@
+<div class="mb-4">
+	<div class="card crudbox w-100" id="{{ @crudBox.id }}" data-crudboxtype="crudbox">
+		<div class="card-header d-flex justify-content-between align-items-center">
+			<h5>{{ @crudBox.title }}</h5>
+		</div>
+		<div class="card-body position-relative">
+			<div>
+				<div class="input-group mb-5">
+					<input type="text" class="form-control" placeholder="{{ @crudBox.addLabel }}" aria-label="{{ @crudBox.addLabel }}" data-crudboxadd="1">
+					<button type="button" class="input-group-text lh-1 fs-4" data-addbtn="1">+</button>
+				</div>
+			</div>
+
+			<ul class="list-group crudbox-entries list-unstyled" data-empty-text="{{ _tr('noEntries') }}" data-crudboxlist="1">
+				<repeat group="{{ @crudBox.data }}" value="{{ @value }}">
+					<li class="mb-3 crudbox-entry d-flex justify-content-between align-items-center border-bottom py-2 mb-3">
+						<input type="hidden" name="{{ @crudBox.dataName }}[]" class="crudbox-input" value="{{ @value[@crudBox.dataValue] }}" form="{{ @crudBox.formId }}">
+						<repeat group="{{ @crudBox.additionalData ?? [] }}" value="{{ @value }}" key="{{ @key }}">
+						<input type="hidden" name="{{ @key }}[]" value="{{ @value }}">
+						</repeat>
+						<span class="crudbox-entry-text px-3">{{ @value[@crudBox.dataValue] }}</span>
+						<button type="button" class="btn lh-1 fs-3 text-danger" data-delete="1" title="{{ _tr('delete') }}">&times;</button>
+					</li>
+				</repeat>
+			</ul>
+
+			<template id="template_{{ @crudBox.id }}">
+				<li class="mb-3 crudbox-entry d-flex justify-content-between align-items-center border-bottom py-2 mb-3">
+					<input type="hidden" name="{{ @crudBox.dataName }}[]" class="crudbox-input" value="" form="{{ @crudBox.formId }}">
+					<repeat group="{{ @crudBox.additionalData ?? [] }}" value="{{ @value }}" key="{{ @key }}">
+					<input type="hidden" name="{{ @key }}[]" value="{{ @value }}">
+					</repeat>
+					<span class="crudbox-entry-text px-3"></span>
+					<button type="button" class="btn lh-1 fs-3 text-danger" data-delete="1" title="{{ _tr('delete') }}">&times;</button>
+				</li>
+			</template>
+		</div>
+	</div>
+</div>

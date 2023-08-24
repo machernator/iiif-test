@@ -1,0 +1,27 @@
+<div class="actionbar ">
+	<div class="container d-flex align-items-end gap-3 py-3 px-4 ">
+		<div class="col col-md-8 offset-md-4 d-flex">
+			<button type="button"
+				class="btn btn-info btn-icon text-white"
+				data-bs-toggle="modal"
+				data-bs-target="#modalNewDocument"
+				id="addDocument">
+				<svg class=" light">
+					<use href="{{ @icons }}fa-solid.svg#circle-plus"></use>
+				</svg>
+			</button>
+
+			<check if="{{ isset(@docId) }}">
+				<a type="button"
+					class="btn btn-danger btn-icon ms-auto"
+					onclick="return confirm('{{ _tr("confirmDelete") }}')"
+					href="{{ 'documentdelete' | alias }}"
+					id="deleteDocument">
+					<svg class="light">
+						<use href="{{ @icons }}fa-solid.svg#trash-can"></use>
+					</svg>
+				</a>
+			</check>
+		</div>
+	</div>
+</div>

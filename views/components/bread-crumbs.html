@@ -1,0 +1,12 @@
+<check if="{{ @breadcrumbs }}">
+	<nav class="row bread-crumbs">
+		<ul>
+			<repeat group="{{ @breadcrumbs }}" value="{{ @href }}" key="{{ @title }}" counter="{{ @counter}}">
+			<li>
+				<check if="{{ @counter > 1 }}"> &raquo;</check>
+				<a href="{{ @href }}">{{ @title }}</a>
+			</li>
+			</repeat>
+		</ul>
+	</nav>
+</check>

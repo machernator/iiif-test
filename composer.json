@@ -1,0 +1,16 @@
+{
+    "require": {
+        "bcosca/fatfree": "^3.7",
+        "tracy/tracy": "^2.9",
+        "xemlock/htmlpurifier-html5": "^0.1.11",
+        "guzzlehttp/guzzle": "^7.4",
+        "wixel/gump": "^2.0",
+        "vstelmakh/url-highlight": "^3.0",
+        "tinymce/tinymce": "^6.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "app/"
+        }
+    }
+}

@@ -1,0 +1,42 @@
+<div class="mb-4">
+	<div class="card crudbox w-100" id="{{ @templateVars.crudBox.id }}" data-crudboxtype="search-tree">
+		<div class="card-header d-flex justify-content-between align-items-center">
+			<h5>{{ @templateVars.crudBox.title }}</h5>
+		</div>
+		<div class="card-body position-relative">
+			<div class="mb-5" id="{{ @templateVars.crudBox.id . 'Search' }}">
+				<div class="mb-4" id="{{ @templateVars.crudBox.id . 'SearchForm'}}" data-searchwrapper="1" data-action="{{ @templateVars.crudBox.searchUrl }}">
+					<label for="{{ @templateVars.crudBox.id . 'SearchInput' }}">{{ @templateVars.crudBox.searchTitle }}</label>
+					<div class="input-group">
+						<select class="syn-select form-select w-30" data-msgnocategory="{{_tr('msgNoCategory') }}" data-nosaveonchange="1" id="cat_{{ @templateVars.crudBox.id }}">
+							<repeat group="{{ @templateVars.crudBox.categories }}" value="{{ @category }}">
+								<option value="{{ @category[@templateVars.crudBox.categoryValue] }}">{{ @category[@templateVars.crudBox.categoryText] }}</option>
+							</repeat>
+						</select>
+						<input type="text" id="{{ @templateVars.crudBox.id . 'SearchInput' }}" class="form-control d-inline-block w-55" data-searchfield="1" autocomplete="new-password" placeholder="{{ _tr('search') }}">
+						<button type="button" class="btn btn-secondary  btn-icon" data-searchbutton="1" title="{{ _tr('search') }}"><svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1.5"><path d="M24 2v44" fill="none" stroke="#000" stroke-width="5.14" transform="rotate(-45 55.15 5.44) scale(.83333 .5039)"/><circle cx="24" cy="23" r="21" fill="none" stroke="#000" stroke-width="5.83" transform="matrix(.64286 0 0 .64286 1.571 1.714)"/></svg></button>
+					</div>
+					<div id="{{ @templateVars.crudBox.id }}SearchResult" data-nostore="1" class="collapse nhm-search-result position-absolute border p-4 rounded bg-white"></div>
+				</div>
+			</div>
+			<ul class="list-group crudbox-entries list-unstyled" data-empty-text="{{ _tr('noEntries') }}" data-crudboxlist="1">
+			<repeat group="{{ @templateVars.crudBox.data }}" value="{{ @entry }}">
+				<li class="mb-3 crudbox-entry d-flex justify-content-between align-items-center input-group py-2 mb-3 border-bottom">
+					<input type="hidden" name="{{ @templateVars.crudBox.dataName }}[]" class="crudbox-input" value="{{ @entry[@templateVars.crudBox.dataValue] }}" form="{{ @templateVars.crudBox.formId }}">
+					<input type="hidden" name="{{ @templateVars.crudBox.categoryValue }}[]" class="crudbox-input" value="{{ @entry[@templateVars.crudBox.categoryValue] }}" form="{{ @templateVars.crudBox.formId }}">
+					<span class="crudbox-entry-text px-3 d-inline-block w-90 ellipsize-left">{{ @entry[@templateVars.crudBox.dataText] ?? @entry[@templateVars.crudBox.dataName] }}</span>
+					<button type="button" class="btn lh-1 fs-3 text-danger" data-delete="1" title="{{ _tr('delete') }}">&times;</button>
+				</li>
+			</repeat>
+			</ul>
+			<template id="template_{{ @templateVars.crudBox.id }}">
+				<li class="mb-3 crudbox-entry d-flex justify-content-between align-items-center input-group py-2 mb-3 border-bottom">
+					<input type="hidden" name="{{ @templateVars.crudBox.dataName }}[]" class="crudbox-input" value="" form="{{ @templateVars.crudBox.formId }}">
+					<input type="hidden" name="{{ @templateVars.crudBox.categoryValue }}[]" class="crudbox-input" value="" form="{{ @templateVars.crudBox.formId }}">
+					<span class="crudbox-entry-text px-3 d-inline-block w-90 ellipsize-left"></span>
+					<button type="button" class="btn lh-1 fs-3 text-danger" data-delete="1" title="{{ _tr('delete') }}">&times;</button>
+				</li>
+			</template>
+		</div>
+	</div>
+</div>

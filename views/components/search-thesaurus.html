@@ -1,0 +1,30 @@
+<check if="{{ empty(@data) }}">
+	<true>
+		<p class="alert alert-warning">{{ _tr('noResult') }}</p>
+	</true>
+	<false>
+		<ul class="list-unstyled list-striped">
+			<repeat group="{{ @data }}" value="{{ @entry }}">
+				<li data-entryid="{{ @entry.NODE_ID }}" data-entryname="{{ @entry.node_name }}">
+					{{ @entry.node_name_marked | raw }}
+				</li>
+			</repeat>
+		</ul>
+		<exclude>
+			<table class="table table-striped table-sm table-hover">
+				<tr>
+					<th>Name</th>
+					<th>Parent</th>
+					<th>Level</th>
+				</tr>
+				<repeat group="{{ @data }}" value="{{ @entry }}">
+					<tr data-entryid="{{ @entry.NODE_ID }}" data-entryname="{{ @entry.node_name }}">
+						<td>{{ @entry.node_name_marked | raw }}</td>
+						<td>{{ @entry.node_name_parent_marked ?? @entry.node_name_parent | raw }}</td>
+						<td>{{ @entry.level_name }}</td>
+					</tr>
+				</repeat>
+			</table>
+		</exclude>
+	</false>
+</check>

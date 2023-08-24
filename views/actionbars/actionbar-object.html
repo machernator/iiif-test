@@ -1,0 +1,93 @@
+<div class="actionbar ">
+	<div class="container d-flex align-items-end gap-3 py-3 px-4 ">
+		<div class="col col-md-9 offset-md-3 d-flex justify-content-between">
+			<div class="d-flex">
+				<button
+					class="btn btn-info btn-icon text-white"
+					data-href="{{ 'objectadd', 'collId=' . @collId | alias }}"
+					id="addObject"
+					title="{{ _tr('add') }}""
+					data-bs-toggle="modal"
+					data-bs-target="#newObjectModal">
+					<svg class=" light">
+					<use href="{{ @icons }}fa-solid.svg#circle-plus"></use>
+					</svg>
+				</button>
+				<a type="button" href="{{ 'assistantcopy', 'collId=' . @collId . ',objId=' . @objId | alias }}" class="btn btn-info btn-icon text-white ms-4" href="#" id="addObject" title="{{ _tr('copy') }}">
+					<svg class="light">
+						<use href="{{ @icons }}fa-solid.svg#copy"></use>
+					</svg>
+				</a>
+
+				<check if="@readOnly ?? false">
+					<true>
+						<a type="button" class="btn btn-success btn-icon text-white ms-4" href="{{ 'objectedit', 'objId=' . @objId | alias }}" id="editObject" title="{{ _tr('edit') }}">
+							<svg class="light">
+								<use href="{{ @icons }}fa-solid.svg#pen-to-square"></use>
+							</svg>
+						</a>
+					</true>
+					<false>
+						<a type="button" class="btn btn-success btn-icon text-white ms-4" href="{{ 'object', 'objId=' . @objId | alias }}" id="readonlyObject" title="{{ _tr('readOnly') }}">
+							<svg class="light">
+								<use href="{{ @icons }}fa-solid.svg#book-open"></use>
+							</svg>
+						</a>
+					</false>
+				</check>
+			</div>
+			<check if="{{ isset(@objId) }}">
+				<a type="button" class="btn btn-danger btn-icon ms-auto" onclick="return confirm('{{ _tr("confirmDelete") }}')" href="{{ 'objectdelete' | alias }}" id="deleteObject" title="{{ _tr('delete') }}">
+					<svg class="light">
+						<use href="{{ @icons }}fa-solid.svg#trash-can"></use>
+					</svg>
+				</a>
+			</check>
+		</div>
+	</div>
+</div>
+<!-- new object modal -->
+<div class="modal fade" id="newObjectModal" tabindex="-1" aria-labelledby="newObjectModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="newObjectModalLabel">{{ 'collection' | _tr }}</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p>{{ 'collectionAddDescription' | _tr }}</p>
+				<select class="form-select" id="newObjectCollection" aria-label="{{ 'collection' | _tr }}">
+					<option value="">{{ 'choose' | _tr }}</option>
+					<repeat group="@collections" value="{{ @collection }}">
+						<option value="{{ @collection.COLL_ID }}"{{ @collection.COLL_ID == @collId ? ' selected': '' }}>{{ @collection['collection_name_' . @language] }}</option>
+					</repeat>
+				  </select>
+			</div>
+			<div class="modal-footer">
+				<a href="" type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'close' | _tr }}</a>
+				<button type="button" class="btn btn-primary" id="btnAddNewObject">{{ 'add' | _tr }}</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+(function(){
+	"use strict";
+	// add object
+	const btnAddNewObject = document.getElementById('btnAddNewObject');
+	const newObjectCollection = document.getElementById('newObjectCollection');
+	btnAddNewObject.addEventListener('pointerup', function(e){
+		e.preventDefault();
+		const collId = newObjectCollection.value;
+		newObjectCollection.value = '';
+
+		if(collId){
+			window.location.href = '{{ 'objectadd', 'collId=' | alias }}'.replace('@collId', collId);
+		}
+		else {
+			alert('{{ 'collectionChoose' | _tr }}');
+			newObjectCollection.focus();
+		}
+	});
+}());
+</script>

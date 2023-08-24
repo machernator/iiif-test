@@ -1,0 +1,19 @@
+<html lang="{{ @language }}">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="NHMW Data Repository">
+	<meta name="author" content="NHMW">
+
+	<title>{{ @sitetitle }} | Naturhistorisches Museum Wien</title>
+	<include href="{{ @tpl_layout . 'fonts.html' }}"></include>
+	<script>const csrftoken = '{{ @csrftoken }}'; appLocale="{{ @appLocale }}"; appDecimalPoint="{{ @appDecimalPoint }}"</script>
+	<repeat group="{{ @csstags }}" value="{{ @csstag }}">
+		{{ @csstag | raw }}
+	</repeat>
+	<repeat group="{{ @jstags }}" value="{{ @js }}">
+		{{ @js | raw}}
+	</repeat>
+	<include href="{{ @tpl_layout . 'favicons.html' }}">
+</head>

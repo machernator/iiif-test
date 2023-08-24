@@ -1,0 +1,16 @@
+.DS_Store
+tmp/*.php
+tmp/cache/*.ser
+.vscode/
+.vscode/*
+resources/uploads/*
+queries/git
+*.log
+TODO
+data/*
+node_modules/
+*.ser
+config/config.ini
+config/config.ini.php
+vendor/
+config.codekit3
