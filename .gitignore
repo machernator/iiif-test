@@ -13,4 +13,5 @@ node_modules/
 config/config.ini
 config/config.ini.php
 vendor/
+public/iiif/*
 config.codekit3

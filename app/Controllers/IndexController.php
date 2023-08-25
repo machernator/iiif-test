@@ -8,7 +8,7 @@ class IndexController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function index(\Base $f3, array $params) {dump('jippe');
+	public function index(\Base $f3, array $params) {
 		$f3->set('sitetitle', 'NHM Digitalisate');
 		$f3->set('content', $this->content('home'));
 		$f3->set('contentSidebar', null);

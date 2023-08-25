@@ -54,7 +54,7 @@ $pagination-focus-border-color:    $primary;
 $pagination-active-border-color:    $primary;
 $pagination-hover-border-color:     $primary;
 $pagination-active-bg:              $primary;
-
+$enable-dark-mode: false;
 @import "../../node_modules/bootstrap/scss/maps";
 @import "../../node_modules/bootstrap/scss/mixins";
 @import "../../node_modules/bootstrap/scss/root";

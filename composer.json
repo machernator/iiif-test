@@ -6,7 +6,8 @@
         "guzzlehttp/guzzle": "^7.4",
         "wixel/gump": "^2.0",
         "vstelmakh/url-highlight": "^3.0",
-        "tinymce/tinymce": "^6.2"
+        "tinymce/tinymce": "^6.2",
+        "stefangabos/zebra_image": "^2.8"
     },
     "autoload": {
         "psr-4": {

@@ -1,0 +1,16 @@
+<h1>Viewer</h1>
+<div class="uv" id="uv"></div>
+<style>
+	.uv {
+		width: 100%;
+		height: 600px;
+	}
+</style>
+<script>
+  const data = {
+	manifest: "/3if/palme/manifest.json",
+	embedded: true // needed for codesandbox frame
+  };
+
+  uv = UV.init("uv", data);
+</script>

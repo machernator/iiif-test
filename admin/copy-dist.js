@@ -44,7 +44,17 @@ const modules = [
 		src: "axios/dist/",
 		dest: "axios/",
 		files: ['axios.min.js', 'axios.min.js.map'],
-	}
+	},
+	{
+		src: "universalviewer/dist/umd/",
+		dest: "universalviewer/",
+		files: [],
+	},
+	{
+		src: "universalviewer/dist/",
+		dest: "universalviewer/",
+		files: ['uv.css'],
+	},
 ];
 
 // Recursively copy files from source to destination
