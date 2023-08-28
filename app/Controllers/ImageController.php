@@ -4,39 +4,27 @@ use \NHM\SystemHelper as SH;
 
 class ImageController extends Controller {
 	private $prefix = 'iiif';
+	private $imageModel;
 
-	/**
-	 * Homepage
-	 *
-	 * @return void
-	 */
-	public function info(\Base $f3, array $params) {
-		header('Content-Type: application/json');
-		$id = $params['imgId'] ?? null;
-
-		$file = @file_get_contents("{$this->prefix}/$id/info.json", 'r');
-		if ($file === false) {
-			die('{"error": "Image not found"}');
-		}
-
-		echo $file;
+	public function __construct(\Base $f3, array $params) {
+		parent::__construct($f3, $params);
+		$this->imageModel = new \Models\ImageModel();
 	}
 
 	public function manifest(\Base $f3, array $params) {
 		header('Content-Type: application/json');
 		$id = $params['imgId'] ?? null;
-
-		$file = @file_get_contents("{$this->prefix}/$id/manifest.json", 'r');
-		if ($file === false) {
+		$manifest = $this->imageModel->manifest($id);
+		if ($manifest === '') {
 			die('{"error": "Manifest not found"}');
 		}
 
-		echo $file;
+		echo $manifest;
 	}
 
 	public function viewer(\Base $f3, array $params) {
 		$id = $params['imgId'] ?? null;
-
+		$f3->set('imgId', $id);
 		$f3->set('sitetitle', 'NHM Digitalisate - Viewer');
 		$f3->set('contentSidebar', 'sidebar-viewer');
 		$f3->set('content', $this->content('viewer'));

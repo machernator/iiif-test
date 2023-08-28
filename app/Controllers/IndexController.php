@@ -38,7 +38,7 @@ class IndexController extends Controller {
 		$f3->set('sitetitle', _tr('help'));
 		$f3->set('contentSidebar', 'sidebar-help');
 		$f3->set('content', $this->content('help'));
-
+bdump(__DIR__);
 		// CSS/JS Files
 		$f3->config($f3->get('controllerConfigPath') . 'help.ini', true);
 		$this->setJS($f3->get('controllerjs'));

@@ -1,0 +1,62 @@
+{
+	"@context": "http://iiif.io/api/presentation/2/context.json",
+	"@type": "sc:Manifest",
+	"@id": "http://nhm-iiif.loc/3if/%id%/manifest.json",
+	"label": "Palm Tree",
+	"description": "Holidays on the beach",
+	"attribution": "NHM",
+	"logo": "http://nhm-iiif.loc/resources/images/nhmw-logo-iiif.svg",
+	"sequences": [
+		{
+			"@type": "sc:Sequence",
+			"canvases": [
+				{
+					"@type": "sc:Canvas",
+					"@id": "http://nhm-iiif.loc/3if/%id%/canvas/1",
+					"label": "p. 1",
+					"width": 4837,
+					"height": 3257,
+					"images": [
+						{
+							"@type": "oa:Annotation",
+							"motivation": "sc:painting",
+							"on": "http://nhm-iiif.loc/3if/%id%/canvas/1",
+							"resource": {
+								"@type": "dctypes:Image",
+								"@id": "%imageServer%aetea.png/full/max/0/default.jpg",
+								"service": {
+									"@context": "http://iiif.io/api/image/2/context.json",
+									"@id": "%imageServer%aetea.png",
+									"profile": "http://iiif.io/api/image/2/level2.json"
+								}
+							}
+						}
+					]
+				},
+				{
+					"@type": "sc:Canvas",
+					"@id": "http://nhm-iiif.loc/3if/%id%/canvas/2",
+					"label": "p. 2",
+					"width": 3195,
+					"height": 2126,
+					"images": [
+						{
+							"@type": "oa:Annotation",
+							"motivation": "sc:painting",
+							"on": "http://nhm-iiif.loc/3if/%id%/canvas/2",
+							"resource": {
+								"@type": "dctypes:Image",
+								"@id": "%imageServer%tom.jpg/full/max/0/default.jpg",
+								"service": {
+									"@context": "http://iiif.io/api/image/2/context.json",
+									"@id": "%imageServer%tom.jpg",
+									"profile": "http://iiif.io/api/image/2/level2.json"
+								}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
