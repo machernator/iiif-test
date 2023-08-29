@@ -1,10 +1,5 @@
 <div class="container px-4 px-md-0 flex-grow-1 d-flex">
 	<div class="row gx-5 flex-grow-1">
-		<check if="{{ @contentSidebar ?? false }}">
-			<aside class="col col-lg-4 aside-primary mb-5 align-self-stretch zindex-2 d-flex flex-column" id="mainSidebar">
-			<include href="{{ @tpl_sidebars . @contentSidebar . '.html' }}">
-			</aside>
-		</check>
 		<main class="col-12 col-lg-8 mb-5 position-relative">
 			<include href="{{ @status }}">
 			<include href="{{ @content }}">

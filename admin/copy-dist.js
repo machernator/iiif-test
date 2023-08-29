@@ -55,6 +55,11 @@ const modules = [
 		dest: "universalviewer/",
 		files: ['uv.css'],
 	},
+	{
+		src: "filepond/dist/",
+		dest: "filepond/",
+		files: [],
+	},
 ];
 
 // Recursively copy files from source to destination

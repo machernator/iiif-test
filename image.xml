@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OME xmlns="http://www.openmicroscopy.org/Schemas/OME/2015-01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openmicroscopy.org/Schemas/OME/2015-01 http://www.openmicroscopy.org/Schemas/OME/2015-01/ome.xsd">
+   <Experimenter ID="Experimenter:0" Institution="" LastName=""/>
+   <Instrument ID="Instrument:0">
+      <!--this instrument tag is add because of backward compatibility with NIS elements 4.30-->
+      <Objective CalibratedMagnification="3.668510" ID="Objective:0" LensNA="0.078000" NominalMagnification="3"/>
+   </Instrument>
+   <Instrument ID="Instrument:1">
+      <Detector ID="Detector:0"/>
+      <Objective Correction="PlanApo" ID="Objective:1" LensNA="0.078000" Model="SHR Plan Apo 0.5x" WorkingDistance="71000.000000"/>
+   </Instrument>
+   <Image ID="Image:0" Name="\\nhm-file\Users\3zoogast\Profiles\Desktop\Ivo\BRYOZOA\Aetea anguina\Aetea anguina 1.tif">
+      <AcquisitionDate>
+         2022-05-12T16:33:45      </AcquisitionDate>
+      <Description>
+         Camera Name:
+Numerical Aperture: 0,078
+Refractive Index: 1
+      </Description>
+      <InstrumentRef ID="Instrument:1"/>
+      <ImagingEnvironment Temperature="-1.000000"/>
+      <Pixels DimensionOrder="XYCZT" ID="Pixels:0" PhysicalSizeX="1.599551" PhysicalSizeY="1.599551" SizeC="3" SizeT="1" SizeX="4837" SizeY="3257" SizeZ="1" Type="uint8">
+         <Channel AcquisitionMode="WideField" Color="16777215" ID="Channel:0" Name="" PinholeSize="-1.000000">
+            <DetectorSettings ID="Detector:0"/>
+         </Channel>
+         <Plane DeltaT="-1.000000" ExposureTime="0.000000" PositionX="-1.000000" PositionY="-1.000000" PositionZ="0.000000" TheC="0" TheT="0" TheZ="0"/>
+      </Pixels>
+   </Image>
+</OME>

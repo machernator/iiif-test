@@ -34,6 +34,6 @@ class ImageController extends Controller {
 		$this->setJS($f3->get('controllerjs'));
 		$this->appendCSS($f3->get('controllercss'));
 
-		echo $this->renderPage();
+		echo $this->renderPage('index-viewer.html');
 	}
 }
