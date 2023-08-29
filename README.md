@@ -1,5 +1,3 @@
-# Default fatfree Project
+# NHM IIIF Prototype
 
-Folders, minimal routing - boilerplate to start a fatfree project. 
-
-Dependent on composer and node.js
+fatfree project, connected to Cantaloupe image server
