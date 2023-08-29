@@ -23,10 +23,33 @@
 							"on": "http://nhm-iiif.loc/3if/%id%/canvas/1",
 							"resource": {
 								"@type": "dctypes:Image",
-								"@id": "%imageServer%%id%/full/max/0/default.jpg",
+								"@id": "%imageServer%aetea.png/full/max/0/default.jpg",
 								"service": {
 									"@context": "http://iiif.io/api/image/2/context.json",
-									"@id": "%imageServer%%id%",
+									"@id": "%imageServer%aetea.png",
+									"profile": "http://iiif.io/api/image/2/level2.json"
+								}
+							}
+						}
+					]
+				},
+				{
+					"@type": "sc:Canvas",
+					"@id": "http://nhm-iiif.loc/3if/%id%/canvas/2",
+					"label": "p. 2",
+					"width": 3195,
+					"height": 2126,
+					"images": [
+						{
+							"@type": "oa:Annotation",
+							"motivation": "sc:painting",
+							"on": "http://nhm-iiif.loc/3if/%id%/canvas/2",
+							"resource": {
+								"@type": "dctypes:Image",
+								"@id": "%imageServer%tom.jpg/full/max/0/default.jpg",
+								"service": {
+									"@context": "http://iiif.io/api/image/2/context.json",
+									"@id": "%imageServer%tom.jpg",
 									"profile": "http://iiif.io/api/image/2/level2.json"
 								}
 							}
