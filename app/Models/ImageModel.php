@@ -5,7 +5,6 @@ use \FormLib\Form;
 
 class ImageModel
 {
-
 	/**
 	 * Create image manifest
 	 *
@@ -20,6 +19,7 @@ class ImageModel
 		}
 		// Search/Replace dynamic values
 		// TODO: check out if performance is better when creating an array for the whole document with names and values
+		$faker = \Faker\Factory::create();
 
 		$search = [
 			'%id%',

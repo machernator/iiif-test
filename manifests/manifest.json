@@ -1,7 +1,7 @@
 {
 	"@context": "http://iiif.io/api/presentation/2/context.json",
 	"@type": "sc:Manifest",
-	"@id": "http://nhm-iiif.loc/3if/%id%/manifest.json",
+	"@id": "%imageServer%%id%/manifest.json",
 	"label": "Palm Tree",
 	"description": "Holidays on the beach",
 	"attribution": "NHM",
@@ -12,7 +12,7 @@
 			"canvases": [
 				{
 					"@type": "sc:Canvas",
-					"@id": "http://nhm-iiif.loc/3if/%id%/canvas/1",
+					"@id": "%imageServer%%id%/canvas/1",
 					"label": "p. 1",
 					"width": 4837,
 					"height": 3257,
@@ -20,7 +20,7 @@
 						{
 							"@type": "oa:Annotation",
 							"motivation": "sc:painting",
-							"on": "http://nhm-iiif.loc/3if/%id%/canvas/1",
+							"on": "%imageServer%%id%/canvas/1",
 							"resource": {
 								"@type": "dctypes:Image",
 								"@id": "%imageServer%%id%/full/max/0/default.jpg",
