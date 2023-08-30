@@ -17,8 +17,7 @@ class IndexController extends Controller
 		$f3->set('content', $this->content('home'));
 		$f3->set('contentSidebar', null);
 		$f3->set('images', $this->getImages());
-dump($f3->get('images'));
-		echo $this->renderPage();
+		echo $this->renderPage('index-single-col.html');
 	}
 
 	/**

@@ -2,12 +2,13 @@
 
 <p>Choose image to be shown in IIIF viewer</p>
 
-<ul class="list-unstyled d-flex  flex-wrap gap-3">
+<ul class="gallery list-unstyled d-flex  flex-wrap gap-3">
 <repeat group="{{ @images }}" value="{{ @image }}">
-	<li>
+	<li class="img-thumbnail d-flex align-items-center">
 		<a href="{{ 'viewer', 'imgId=' . @image.id | alias }}">
-			<img src="{{ @imageServer . @image.id . '/full/220,/0/default.jpg' }}" alt="{{ @image.title }}" class="img-thumbnail ">
+			<img src="{{ @imageServer . @image.id . '/full/220,/0/default.jpg' }}" alt="{{ @image.title }}">
 		</a>
+		<figcaption class="p-3">Name: {{ @image.id }}</figcaption>
 	</li>
 </repeat>
 </ul>
