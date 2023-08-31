@@ -1,8 +1,0 @@
-<ul>
-	<repeat group="@persons" value="@person">
-		<li data-entryid="{{ @person.ID }}">
-		{{@person.name}}
-		<include href="{{ @tpl_components.'filter-persons-tree.html'}}" if="{{ array_key_exists('children', @person)}}" with="taxa={{@person.children}}"/>
-		</li>
-	</repeat>
-</ul>

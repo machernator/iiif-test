@@ -57,18 +57,33 @@ class IndexController extends Controller
 	{
 		$images = [];
 		$dir = $this->f3->get('imageFolder');
-		$files = scandir($dir);
 		$faker = \Faker\Factory::create();
-		foreach ($files as $file) {
-			if (preg_match('/\.jpg$/', $file) || preg_match('/\.jpeg$/', $file) || preg_match('/\.png$/', $file)) {
+
+		$iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir));
+		foreach ($iterator as $file) {
+			if ($file->isFile() && in_array($file->getExtension(), array('jpg', 'jpeg', 'png'))) {
+				$relPath = str_replace($dir . '/', '', $file->getPathname());
+				$fileName = str_replace("/", "--", $relPath);
 				$images[] = [
-					'id' => $file,
-					'url' => $this->f3->get('imageServer') . $file,
+					'id' => $fileName,
+					'url' => $this->f3->get('imageServer') . $fileName,
 					'title' => $faker->sentence(3),
-					'description' => $faker->paragraph(3),
+					'description' => $faker->paragraph(6),
+					'path' => $relPath
 				];
 			}
 		}
+		// dumpe($images);
+		// foreach ($files as $file) {
+		// 	if (preg_match('/\.jpg$/', $file) || preg_match('/\.jpeg$/', $file) || preg_match('/\.png$/', $file)) {
+		// 		$images[] = [
+		// 			'id' => $file,
+		// 			'url' => $this->f3->get('imageServer') . $file,
+		// 			'title' => $faker->sentence(3),
+		// 			'description' => $faker->paragraph(3),
+		// 		];
+		// 	}
+		// }
 		return $images;
 	}
 }
