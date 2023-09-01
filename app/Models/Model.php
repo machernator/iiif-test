@@ -13,7 +13,7 @@ abstract class Model {
 
 	public function __construct() {
         $this->f3 = \Base::instance();
-		$this->db = DB::instance();dump('m');
+		$this->db = DB::instance();
         $this->conn = $this->db->getConnection();
 
         /*

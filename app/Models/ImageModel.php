@@ -3,7 +3,7 @@ namespace Models;
 use \NHM\SystemHelper as SH;
 use \FormLib\Form;
 
-class ImageModel
+class ImageModel extends Model
 {
 	/**
 	 * Create image manifest
@@ -34,5 +34,17 @@ class ImageModel
 
 		return $file;
 
+	}
+
+	public function listMedia():array
+	{
+		$sp   = 'EXEC app.sp_List_Media';
+		$stmt = $this->executeResult($sp);
+		$res = [];
+		if ($stmt === false) return $res;
+		while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+			$res[] = $row;
+		}
+		return $res;
 	}
 }

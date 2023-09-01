@@ -1,14 +1,13 @@
 <h1>Welcome to the NHM Digital Media Database</h1>
 
 <p>Choose image to be shown in IIIF viewer</p>
-
 <ul class="gallery list-unstyled d-flex  flex-wrap gap-3">
 <repeat group="{{ @images }}" value="{{ @image }}">
 	<li class="img-thumbnail d-flex align-items-center">
-		<a href="{{ 'viewer', 'imgId=' . @image.id | alias }}">
-			<img src="{{ @imageServer . @image.id . '/full/220,/0/default.jpg' }}" alt="{{ @image.title }}">
+		<a href="{{ 'viewer', 'imgId=' . @image.iiif_id | alias }}">
+			<img src="{{ @imageServer . @image.iiif_id . '/full/220,/0/default.jpg' }}" alt="{{ @image.media_title }}">
 		</a>
-		<figcaption class="p-3">Name: {{ @image.id }}</figcaption>
+		<figcaption class="p-3">{{ @image.description }}</figcaption>
 	</li>
 </repeat>
 </ul>

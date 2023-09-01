@@ -1,11 +1,19 @@
 <?php
 
 namespace Controllers;
-
+use \Models\ImageModel as ImageModel;
 use \NHM\SystemHelper as SH;
 
 class IndexController extends Controller
 {
+	private $imageModel;
+
+	public function __construct(\Base $f3, array $params)
+	{
+		parent::__construct($f3, $params);
+		$this->imageModel = new ImageModel();
+	}
+
 	/**
 	 * Homepage
 	 *
@@ -16,7 +24,9 @@ class IndexController extends Controller
 		$f3->set('sitetitle', 'NHM Digitalisate');
 		$f3->set('content', $this->content('home'));
 		$f3->set('contentSidebar', null);
-		$f3->set('images', $this->getImages());
+		$images = $this->imageModel->listMedia();
+		$f3->set('images', $images);
+
 		echo $this->renderPage('index-single-col.html');
 	}
 
@@ -51,39 +61,5 @@ class IndexController extends Controller
 		$this->appendCSS($f3->get('controllercss'));
 
 		echo $this->renderPage();
-	}
-
-	private function getImages(): array
-	{
-		$images = [];
-		$dir = $this->f3->get('imageFolder');
-		$faker = \Faker\Factory::create();
-
-		$iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($dir));
-		foreach ($iterator as $file) {
-			if ($file->isFile() && in_array($file->getExtension(), array('jpg', 'jpeg', 'png'))) {
-				$relPath = str_replace($dir . '/', '', $file->getPathname());
-				$fileName = str_replace("/", "--", $relPath);
-				$images[] = [
-					'id' => $fileName,
-					'url' => $this->f3->get('imageServer') . $fileName,
-					'title' => $faker->sentence(3),
-					'description' => $faker->paragraph(6),
-					'path' => $relPath
-				];
-			}
-		}
-		// dumpe($images);
-		// foreach ($files as $file) {
-		// 	if (preg_match('/\.jpg$/', $file) || preg_match('/\.jpeg$/', $file) || preg_match('/\.png$/', $file)) {
-		// 		$images[] = [
-		// 			'id' => $file,
-		// 			'url' => $this->f3->get('imageServer') . $file,
-		// 			'title' => $faker->sentence(3),
-		// 			'description' => $faker->paragraph(3),
-		// 		];
-		// 	}
-		// }
-		return $images;
 	}
 }

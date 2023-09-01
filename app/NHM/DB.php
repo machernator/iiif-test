@@ -33,7 +33,6 @@ class DB {
         // sonst Windows-Authentifizierung ohne User/Pass mittels AD
         $this->conn = sqlsrv_connect($host, $options);
         sqlsrv_configure("WarningsReturnAsErrors", 0);
-        dump($this->conn );
         $this->error = sqlsrv_errors();
 
         if (!$this->conn) {
