@@ -56,6 +56,11 @@ const modules = [
 		files: ['uv.css'],
 	},
 	{
+		src: "mirador/dist/",
+		dest: "mirador/",
+		files: ['mirador.min.js', 'mirador.min.js.mapco'],
+	},
+	{
 		src: "filepond/dist/",
 		dest: "filepond/",
 		files: [],

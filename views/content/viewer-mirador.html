@@ -1,0 +1,32 @@
+<h1>Mirador</h1>
+<div class="mirador" id="miradorViewer"></div>
+<style>
+	.mirador {
+		width: 100%;
+		height: 720px;
+		background-color: orange;
+	}
+</style>
+<script>
+var mirador = Mirador.viewer({
+  "id": "miradorViewer",
+  "manifests": {
+    "/iiif/{{ @imgId }}/manifest.json": {
+      "provider": "NHMW"
+    }
+  },
+  "window": {
+	allowTopMenuButton: false, // Configure if window view and thumbnail display menu are visible or not
+	allowClose: false, // Configure if window can be closed or not
+	sideBarOpen: true,
+
+  },
+  "windows": [
+    {
+      "loadedManifest": "/iiif/{{ @imgId }}/manifest.json",
+      "canvasIndex": 1,
+      "thumbnailNavigationPosition": 'far-bottom'
+    }
+  ]
+});
+</script>
