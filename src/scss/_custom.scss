@@ -245,6 +245,15 @@ a.overlay-link {
 	}
 }
 
+.MuiSvgIcon-root {
+	width: 1.25em !important;
+	height: 1.25em !important;
+}
+
+.MuiTooltip-tooltip {
+	font-size: 1rem !important;
+}
+
 /////////////////////////////////
 // Gallery
 /////////////////////////////////
@@ -667,6 +676,15 @@ select {
 		background-color: lightseagreen;
 	}
 }
+
+.custom-popover {
+	--bs-popover-max-width: 200px;
+	--bs-popover-border-color: var(--bs-info);
+	--bs-popover-header-bg: var(--bs-info);
+	--bs-popover-header-color: var(--bs-white);
+	--bs-popover-body-padding-x: 1rem;
+	--bs-popover-body-padding-y: .75rem;
+  }
 
 /////////////////////////////////
 // Entries

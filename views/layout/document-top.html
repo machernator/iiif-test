@@ -16,10 +16,7 @@
 				</div>
 				<div class="offcanvas-body pt-5">
 					<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-						<li class="release-switch nav-item d-lg-block">
-							<a href="/" class="nav-link">Home</a>
-						</li>
-						<li class="nav-item"><a class="nav-link " href="{{ 'home' | alias }}">{{ 'objectAssistant' | _tr }}</a></li>
+						<li class="nav-item"><a class="nav-link " href="{{ 'home' | alias }}">Home</a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
 								data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,15 +31,6 @@
 								</li>
 							</ul>
 						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false">
-								{{ _tr('manageData') }}
-							</a>
-							<ul class="dropdown-menu w-100" aria-labelledby="navbarDropdown">
-								<li class="mb-3"><a class="dropdown-item" href="{{ 'home' | alias }}">Home</a></li>
-							</ul>
-						</li>
 						<li class="nav-item"><a class="nav-link " href="{{ 'help' | alias }}">{{ 'help' | _tr }}</a></li>
 					</ul>
 				</div>
@@ -51,27 +39,7 @@
 
 			<nav class="navbar navbar-expand-lg justify-content-between d-none d-lg-flex" id="navbar--desktop">
 				<ul class="navbar-nav main-nav">
-					<li class="nav-item"><a class="nav-link " href="/">Home</a></li>
-					<li class="nav-item"><a class="nav-link " href="{{ 'home' | alias }}">{{ 'home' | _tr }}</a></li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false">
-							{{ _tr('manageData') }}
-						</a>
-						<div class="dropdown-menu mega-menu p-4" aria-labelledby="navbarDropdown">
-							<ul class="list-unstyled">
-								<li class="my-4"><a class="dropdown-item" href="{{ 'home' | alias }}">Home</a></li>
-							</ul>
-							<ul class="list-unstyled ms-5">
-								<li class="my-4"><a class="dropdown-item" href="{{ 'home' | alias}}">{{ 'home' | _tr }}</a></li>
-							</ul>
-							<ul class="list-unstyled ms-5">
-								<li class="my-4"><a class="dropdown-item" href="{{ 'translation' | alias}}">{{ 'translations' | _tr }}</a></li>
-							</ul>
-						</div>
-					</li>
-				</ul>
-				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link " href="{{ 'home' | alias }}">Home</a></li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false">
@@ -86,9 +54,8 @@
 							</li>
 						</ul>
 					</li>
-				</ul>
-				<ul class="navbar-nav">
 					<li class="nav-item"><a class="nav-link " href="{{ 'help' | alias }}">{{ 'help' | _tr }}</a></li>
+
 				</ul>
 			</nav>
 		</div>

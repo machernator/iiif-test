@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<include href="{{ @tpl_layout.'document-head.html' }}">
+
+	<body data-formtoken="{{ @csrftoken }}">
+		<include href="{{ @tpl_layout.'document-top.html' }}">
+		<div class="container px4">
+			<div class="col">
+				<button class="btn btn-secondary w-100" id="toggleFullScreen">Fullscreen</button>
+			</div>
+		</div>
+		<div class="container px-4 px-md-0 flex-grow-1 d-flex position-relative" id="mainCol">
+			<div class="row gx-5 flex-grow-1">
+				<main class="col">
+					<include href="{{ @status }}">
+						<include href="{{ @content }}">
+				</main>
+			</div>
+		</div>
+		<check if="{{ @modal ?? false }}">
+			<include href="{{ @tpl_modals . @modal }}">
+		</check>
+
+		<include href="{{ @tpl_layout.'document-footer.html'}}">
+	</body>
+
+	</html>

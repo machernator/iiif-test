@@ -2,10 +2,10 @@
 	"@context": "http://iiif.io/api/presentation/2/context.json",
 	"@type": "sc:Manifest",
 	"@id": "%imageServer%%id%/manifest.json",
-	"label": "Palm Tree",
-	"description": "Holidays on the beach",
+	"label": "%manLabel%",
+	"description": "%manDescription%",
 	"attribution": "NHM",
-	"logo": "http://nhm-iiif.loc/resources/images/nhmw-logo-iiif.svg",
+	"logo": "/resources/images/nhmw-logo-iiif.svg",
 	"sequences": [
 		{
 			"@type": "sc:Sequence",
@@ -13,9 +13,59 @@
 				{
 					"@type": "sc:Canvas",
 					"@id": "%imageServer%%id%/canvas/1",
-					"label": "p. 1",
+					"label": "%manLabel%",
 					"width": 4837,
 					"height": 3257,
+					"metadata": [
+						{
+							"label": {
+								"en": [
+									"Description"
+								]
+							},
+							"value": {
+								"en": [
+									"%canvasDescription%"
+								]
+							}
+						},
+						{
+							"label": {
+								"en": [
+									"Date"
+								]
+							},
+							"value": {
+								"en": [
+									"%year%"
+								]
+							}
+						},
+						{
+							"label": {
+								"en": [
+									"Creator"
+								]
+							},
+							"value": {
+								"en": [
+									"%creator%"
+								]
+							}
+						},
+						{
+							"label": {
+								"en": [
+									"Links Example"
+								]
+							},
+							"value": {
+								"en": [
+									"<a href='http://www.orf.com' target='_blank'>ORF</a><br><a href='http://www.google.com' target='_blank'>Google</a>"
+								]
+							}
+						}
+					],
 					"images": [
 						{
 							"@type": "oa:Annotation",

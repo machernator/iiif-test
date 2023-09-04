@@ -24,11 +24,23 @@ class ImageModel extends Model
 		$search = [
 			'%id%',
 			'%imageServer%',
+			'%manLabel%',
+			'%manDescription%',
+			'%canvasDescription%',
+			'%year%',
+			'%creator%'
 		];
 
+		$label = implode('-', $faker->words(rand(2, 4)));
+		$year = rand(1800, 2023);
 		$replace = [
 			$id,
 			$f3->get('imageServer'),
+			$label,
+			$faker->text(120),
+			$faker->text(220),
+			$year,
+			$faker->name()
 		];
 		$file = str_replace($search, $replace, $file);
 

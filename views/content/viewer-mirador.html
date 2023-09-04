@@ -1,4 +1,3 @@
-<h1>Mirador</h1>
 <div class="mirador" id="miradorViewer"></div>
 <style>
 	.mirador {
@@ -28,7 +27,46 @@
 				allowTopMenuButton: false,
 				allowClose: false,
 				sideBarOpen: true,
+				allowFullscreen: true
 
+			},
+			"theme": {
+				typography: {
+					body1: {
+						fontSize: "1.25rem",
+						letterSpacing: "0em",
+						lineHeight: "1.6em",
+					},
+					button: {
+						fontSize: "3rem",
+						letterSpacing: "0.09em",
+						lineHeight: "2.25rem",
+						textTransform: "uppercase",
+					},
+					caption: {
+						fontSize: "1.2rem",
+						letterSpacing: "0.033em",
+						lineHeight: "1.6rem",
+					},
+					overline: {
+						fontSize: "1.2rem",
+						fontWeight: 500,
+						lineHeight: "2em",
+						textTransform: "uppercase",
+					},
+					subtitle1: {
+						fontSize: "1.2rem",
+						letterSpacing: "0.015em",
+						lineHeight: "1.6",
+						fontWeight: 300,
+					},
+					subtitle2: {
+						fontSize: "1.2rem",
+						fontWeight: 500,
+						letterSpacing: "0.02em",
+						lineHeight: "1.75",
+					},
+				}
 			},
 			"workspaceControlPanel": {
 				enabled: false
@@ -37,7 +75,7 @@
 				{
 					"loadedManifest": "/iiif/{{ @imgId }}/manifest.json",
 					"canvasIndex": 1,
-					"thumbnailNavigationPosition": 'far-bottom'
+					"thumbnailNavigationPosition": 'off'
 				}
 			]
 		});
