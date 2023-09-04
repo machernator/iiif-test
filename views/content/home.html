@@ -5,11 +5,32 @@
 	<repeat group="{{ @images }}" value="{{ @image }}">
 		<li>
 			<a href="{{ 'viewerMirador', 'imgId=' . @image.iiif_id | alias }}">
-				<img src="{{ @imageServer . @image.iiif_id . '/full/220,/0/default.jpg' }}"
+				<img src="{{ @imageServer . @image.iiif_id . '/full/320,/0/default.jpg' }}"
 					alt="{{ @image.media_title }}"
 					class="gallery-image">
 			</a>
-
+			<button class="position-absolute btn-icon bottom-0 end-0 translate-middle badge rounded-pill bg-info border-0"
+				title="{{ @image.media_title }}"
+				aria-label="Details"
+				data-bs-container="body"
+				data-bs-toggle="popover"
+				data-bs-trigger="focus"
+				data-bs-placement="auto"
+				data-bs-content="{{ @image.description }}">
+				<svg class="light">
+					<use href="{{ @icons }}/fa-solid.svg#ellipsis"></use>
+				</svg>
+			</button>
 		</li>
 	</repeat>
 </ul>
+
+<script>
+	(function () {
+		var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+		var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+			return new bootstrap.Popover(popoverTriggerEl)
+		})
+	}());
+
+</script>
