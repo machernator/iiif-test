@@ -3,30 +3,44 @@
 <style>
 	.mirador {
 		width: 100%;
-		height: 720px;
+		min-height: 420px;
 		background-color: orange;
 	}
 </style>
 <script>
-var mirador = Mirador.viewer({
-  "id": "miradorViewer",
-  "manifests": {
-    "/iiif/{{ @imgId }}/manifest.json": {
-      "provider": "NHMW"
-    }
-  },
-  "window": {
-	allowTopMenuButton: false, // Configure if window view and thumbnail display menu are visible or not
-	allowClose: false, // Configure if window can be closed or not
-	sideBarOpen: true,
+	(function () {
+		function setViewerHeight() {
+			viewer.style.height = window.innerHeight - viewer.offsetTop - 180 + 'px';
+		}
 
-  },
-  "windows": [
-    {
-      "loadedManifest": "/iiif/{{ @imgId }}/manifest.json",
-      "canvasIndex": 1,
-      "thumbnailNavigationPosition": 'far-bottom'
-    }
-  ]
-});
+		const viewer = document.getElementById('miradorViewer');
+		setViewerHeight();
+
+		window.onresize = setViewerHeight;
+		var mirador = Mirador.viewer({
+			"id": "miradorViewer",
+			"manifests": {
+				"/iiif/{{ @imgId }}/manifest.json": {
+					"provider": "NHMW"
+				}
+			},
+			"window": {
+				allowTopMenuButton: false,
+				allowClose: false,
+				sideBarOpen: true,
+
+			},
+			"workspaceControlPanel": {
+				enabled: false
+			},
+			"windows": [
+				{
+					"loadedManifest": "/iiif/{{ @imgId }}/manifest.json",
+					"canvasIndex": 1,
+					"thumbnailNavigationPosition": 'far-bottom'
+				}
+			]
+		});
+	}());
+
 </script>
