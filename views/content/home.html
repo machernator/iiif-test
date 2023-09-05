@@ -1,30 +1,146 @@
-<h1>Welcome to the NHM Digital Media Database</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<h1>Dummy Collection Object</h1>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi provident, nisi officiis beatae amet numquam accusamus sed cupiditate perspiciatis labore quidem libero mollitia deserunt sapiente est? Praesentium ut illo enim!</p>
+			<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae amet saepe quasi, unde voluptatibus consectetur neque a reprehenderit magnam inventore ab, harum ratione nesciunt doloremque sunt voluptas, eum placeat laudantium. Nam repellendus sint doloremque commodi est! Odit eaque qui deleniti.</p>
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio autem eum exercitationem sapiente perspiciatis voluptatibus impedit libero ullam quidem quibusdam nam deleniti quasi tenetur, nostrum dicta voluptas cum accusantium tempora aspernatur molestias ipsam? <a href="">Read more ...</a></p>
 
-<p>Choose image to be shown in IIIF viewer</p>
-<ul class="gallery-auto-fit list-unstyled ">
-	<repeat group="{{ @images }}" value="{{ @image }}">
-		<li>
-			<a href="{{ 'viewerMirador', 'imgId=' . @image.iiif_id | alias }}">
-				<img src="{{ @imageServer . @image.iiif_id . '/full/320,/0/default.jpg' }}"
-					alt="{{ @image.media_title }}"
-					class="gallery-image">
-			</a>
-			<button class="position-absolute btn-icon bottom-0 end-0 translate-middle badge rounded-pill bg-info border-0"
-				title="{{ @image.media_title }}"
-				aria-label="Details"
-				data-bs-container="body"
-				data-bs-toggle="popover"
-				data-bs-trigger="focus"
-				data-bs-placement="auto"
-				data-bs-custom-class="custom-popover"
-				data-bs-content="{{ @image.description }}">
-				<svg class="light">
-					<use href="{{ @icons }}/fa-solid.svg#ellipsis"></use>
-				</svg>
-			</button>
-		</li>
-	</repeat>
-</ul>
+			<h2>Details</h2>
+			<table  class="table table-striped">
+				<tbody >
+					<tr>
+						<th  class="col-4"> Scientific name </th>
+						<td  class="col-8">
+							<div> Erigeron acer L. subsp. acer </div>
+						</td>
+					</tr>
+					<tr>
+						<th > Vernaculars </th>
+						<td>—</td>
+					</tr>
+					<tr>
+						<th >Vernaculars from associated taxon</th>
+						<td >—</td>
+					</tr>
+					<tr>
+						<th > Registration number </th>
+						<td > L.3754043 </td>
+					</tr>
+					<tr>
+						<th > Source </th>
+						<td  id="cy_source_name"> Naturalis - Botany catalogues </td>
+					</tr>
+					<tr>
+						<th > License </th>
+						<td > CC0 1.0 </td>
+					</tr>
+					<tr>
+						<th > Institution </th>
+						<td > Naturalis Biodiversity Center </td>
+					</tr>
+					<tr>
+						<th > Collection name </th>
+						<td > Botany </td>
+					</tr>
+					<tr>
+						<th > Basis of record </th>
+						<td > Herbarium sheet </td>
+					</tr>
+					<tr>
+						<th > Type status </th>
+						<td > — </td>
+					</tr>
+					<tr>
+						<th > Phase or stage </th>
+						<td > — </td>
+					</tr>
+					<tr>
+						<th > Sex </th>
+						<td > — </td>
+					</tr>
+					<tr>
+						<th > Part </th>
+						<td > — </td>
+					</tr>
+					<tr>
+						<th > Preparation method </th>
+						<td > — </td>
+					</tr>
+					<tr>
+						<th > Number of specimen </th>
+						<td > — </td>
+					</tr>
+					<tr>
+						<th > Date </th>
+						<td > 2002-06-24 </td>
+					</tr>
+					<tr>
+						<th > Collector </th>
+						<td>
+							<p>Järvinen, JT</p>
+						</td>
+					</tr>
+					<tr>
+						<th > Locality </th>
+						<td >Europe; Finland; Pohjois-Hame, Keuruu Commune, Keuruu (Village), vuorimaenkyla Niinilammenvuori, Lamminmaki, Sandy Northern South boreal road side. </td>
+					</tr>
+					<tr>
+						<th >Site coordinates</th>
+						<td>
+							<p>(62.123333, 24.508333)</p>
+						</td>
+					</tr>
+					<tr>
+						<th > Collectors field number </th>
+						<td > Järvinen, JT 2090 </td>
+					</tr>
+					<tr>
+						<th > Modified </th>
+						<td > — </td>
+					</tr>
+					<tr>
+						<th > PreviousUnitsText </th>
+						<td > — </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-12 col-md-5">
+			<ul class="gallery-auto-fit list-unstyled mb-5">
+				<repeat group="{{ @images }}" value="{{ @image }}">
+					<li>
+						<a href="{{ 'viewerMirador', 'imgId=' . @image.iiif_id | alias }}" target="_blank">
+							<img src="{{ @imageServer . @image.iiif_id . '/full/240,/0/default.jpg' }}"
+								alt="{{ @image.media_title }}"
+								class="gallery-image">
+						</a>
+						<button class="position-absolute btn-icon bottom-0 end-0 translate-middle badge rounded-pill bg-info border-0"
+							title="{{ @image.media_title }}"
+							aria-label="Details"
+							data-bs-container="body"
+							data-bs-toggle="popover"
+							data-bs-trigger="focus"
+							data-bs-placement="auto"
+							data-bs-custom-class="custom-popover"
+							data-bs-content="{{ @image.description }}">
+							<svg class="light">
+								<use href="{{ @icons }}/fa-solid.svg#ellipsis"></use>
+							</svg>
+						</button>
+					</li>
+				</repeat>
+			</ul>
+
+			<div class="mb-5">
+				<div class="ratio ratio-1x1 mb-2">
+					<iframe frameborder="0" scrolling="no" src="https://www.openstreetmap.org/export/embed.html?bbox=20.775146484375004%2C60.30790645342296%2C28.245849609375004%2C63.83582449597638&amp;layer=mapnik&amp;marker=62.123333%2C24.508332999999993" style="border: 1px solid #ced4da; width: 100%; border-radius: 2;"></iframe>
+				</div>
+				<small class="d-flex justify-content-end"><a href="https://www.openstreetmap.org/export/embed.html?bbox=20.775146484375004%2C60.30790645342296%2C28.245849609375004%2C63.83582449597638&amp;layer=mapnik&amp;marker=62.123333%2C24.508332999999993" target="_blank">Larger Map</a></small>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script>
 	(function () {

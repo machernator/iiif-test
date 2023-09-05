@@ -58,12 +58,17 @@ const modules = [
 	{
 		src: "mirador/dist/",
 		dest: "mirador/",
-		files: ['mirador.min.js', 'mirador.min.js.mapco'],
+		files: ['mirador.min.js', 'mirador.min.js.map'],
 	},
 	{
 		src: "filepond/dist/",
 		dest: "filepond/",
 		files: [],
+	},
+	{
+		src: "@dbmdz/mirador-downloadmenu/",
+		dest: "mirador-downloadmenu/",
+		files: ['downloadMenu.min.js', 'downloadMenu.min.css'],
 	},
 ];
 
