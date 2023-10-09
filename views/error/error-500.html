@@ -17,7 +17,7 @@
 				<h1 class="text-danger text-center">{{ @ERROR.code }} </h1>
 				</check>
 				<h2 class="text-danger text-center">Oh no, this is embarassing! <br>An error occured&nbsp;:( </h2>
-				<check if="{{ @devMode }}">
+				<check if="{{ @devMode ?? false }}">
 					<true>
 						<code>
 							{{ @ERROR.text  }}<br>

@@ -36,7 +36,7 @@ class DB {
         $this->error = sqlsrv_errors();
 
         if (!$this->conn) {
-            $error = $this->error[0];
+            $error = $this->error[0] ?? ['code' => 0, 'message' => ''];
             $msg = '';
             // Login error
             if (array_key_exists('code', $error)) {
