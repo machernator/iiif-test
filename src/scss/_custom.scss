@@ -124,6 +124,8 @@ b {
 .logo {
 	display: block;
 	max-width: 20rem;
+	width: 10%;
+	min-width: 7em;
 }
 
 .cursor-pointer {
@@ -257,6 +259,15 @@ a.overlay-link {
 }
 
 /////////////////////////////////
+// UV Overrides
+/////////////////////////////////
+.uv {
+	& > div {
+		height: 100% !important;
+	}
+}
+
+/////////////////////////////////
 // Gallery
 /////////////////////////////////
 .gallery-auto-fit {
@@ -370,7 +381,7 @@ a.overlay-link {
 		.nav-link {
 			display: inline-block;
 			position: relative;
-			margin: 2.5rem 0;
+			margin: 0.5rem 0;
 			width: 100%;
 			color: #000000;
 			text-decoration: none;

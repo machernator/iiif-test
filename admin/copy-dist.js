@@ -65,11 +65,11 @@ const modules = [
 		dest: "filepond/",
 		files: [],
 	},
-	{
-		src: "@dbmdz/mirador-downloadmenu/",
-		dest: "mirador-downloadmenu/",
-		files: ['downloadMenu.min.js', 'downloadMenu.min.css'],
-	},
+	// {
+	// 	src: "@dbmdz/mirador-downloadmenu/",
+	// 	dest: "mirador-downloadmenu/",
+	// 	files: ['downloadMenu.min.js', 'downloadMenu.min.css'],
+	// },
 ];
 
 // Recursively copy files from source to destination

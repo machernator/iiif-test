@@ -6,8 +6,7 @@
 		background-color: orange;
 	}
 </style>
-<script>
-	(function () {
+<script type="module">
 		function setViewerHeight() {
 			viewer.style.height = window.innerHeight - viewer.offsetTop - 180 + 'px';
 		}
@@ -16,6 +15,8 @@
 		setViewerHeight();
 
 		window.onresize = setViewerHeight;
+		console.log(Mirador);
+
 		var mirador = Mirador.viewer({
 			"id": "miradorViewer",
 			"manifests": {
@@ -79,6 +80,5 @@
 				}
 			]
 		});
-	}());
 
 </script>
