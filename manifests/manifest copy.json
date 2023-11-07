@@ -1,32 +1,82 @@
 {
 	"@context": "http://iiif.io/api/presentation/2/context.json",
 	"@type": "sc:Manifest",
-	"@id": "http://nhm-iiif.loc/3if/%id%/manifest.json",
-	"label": "Palm Tree",
-	"description": "Holidays on the beach",
+	"@id": "%imageServer%%id%/manifest.json",
+	"label": "%manLabel%",
+	"description": "%manDescription%",
 	"attribution": "NHM",
-	"logo": "http://nhm-iiif.loc/resources/images/nhmw-logo-iiif.svg",
+	"logo": "/resources/images/nhmw-logo-iiif.svg",
 	"sequences": [
 		{
 			"@type": "sc:Sequence",
 			"canvases": [
 				{
 					"@type": "sc:Canvas",
-					"@id": "http://nhm-iiif.loc/3if/%id%/canvas/1",
-					"label": "p. 1",
+					"@id": "%imageServer%%id%/canvas/1",
+					"label": "%manLabel%",
 					"width": 4837,
 					"height": 3257,
+					"metadata": [
+						{
+							"label": {
+								"en": [
+									"Description"
+								]
+							},
+							"value": {
+								"en": [
+									"%canvasDescription%"
+								]
+							}
+						},
+						{
+							"label": {
+								"en": [
+									"Date"
+								]
+							},
+							"value": {
+								"en": [
+									"%year%"
+								]
+							}
+						},
+						{
+							"label": {
+								"en": [
+									"Creator"
+								]
+							},
+							"value": {
+								"en": [
+									"%creator%"
+								]
+							}
+						},
+						{
+							"label": {
+								"en": [
+									"Links Example"
+								]
+							},
+							"value": {
+								"en": [
+									"<a href='http://www.orf.com' target='_blank'>ORF</a><br><a href='http://www.google.com' target='_blank'>Google</a>"
+								]
+							}
+						}
+					],
 					"images": [
 						{
 							"@type": "oa:Annotation",
 							"motivation": "sc:painting",
-							"on": "http://nhm-iiif.loc/3if/%id%/canvas/1",
+							"on": "%imageServer%%id%/canvas/1",
 							"resource": {
 								"@type": "dctypes:Image",
-								"@id": "%imageServer%aetea.png/full/max/0/default.jpg",
+								"@id": "%imageServer%%id%/full/max/0/default.jpg",
 								"service": {
 									"@context": "http://iiif.io/api/image/2/context.json",
-									"@id": "%imageServer%aetea.png",
+									"@id": "%imageServer%%id%",
 									"profile": "http://iiif.io/api/image/2/level2.json"
 								}
 							}
@@ -35,21 +85,71 @@
 				},
 				{
 					"@type": "sc:Canvas",
-					"@id": "http://nhm-iiif.loc/3if/%id%/canvas/2",
-					"label": "p. 2",
-					"width": 3195,
-					"height": 2126,
+					"@id": "%imageServer%%id%/canvas/2",
+					"label": "%manLabel%",
+					"width": 4837,
+					"height": 3257,
+					"metadata": [
+						{
+							"label": {
+								"en": [
+									"Description"
+								]
+							},
+							"value": {
+								"en": [
+									"%canvasDescription% anderes"
+								]
+							}
+						},
+						{
+							"label": {
+								"en": [
+									"Date"
+								]
+							},
+							"value": {
+								"en": [
+									"%year%"
+								]
+							}
+						},
+						{
+							"label": {
+								"en": [
+									"Creator"
+								]
+							},
+							"value": {
+								"en": [
+									"%creator%"
+								]
+							}
+						},
+						{
+							"label": {
+								"en": [
+									"Links Example"
+								]
+							},
+							"value": {
+								"en": [
+									"<a href='http://derstandard.at' target='_blank'>ORF</a><br><a href='http://www.google.com' target='_blank'>Google</a>"
+								]
+							}
+						}
+					],
 					"images": [
 						{
 							"@type": "oa:Annotation",
 							"motivation": "sc:painting",
-							"on": "http://nhm-iiif.loc/3if/%id%/canvas/2",
+							"on": "%imageServer%%id%/canvas/2",
 							"resource": {
 								"@type": "dctypes:Image",
-								"@id": "%imageServer%tom.jpg/full/max/0/default.jpg",
+								"@id": "%imageServer%%id%/full/max/0/default.jpg",
 								"service": {
 									"@context": "http://iiif.io/api/image/2/context.json",
-									"@id": "%imageServer%tom.jpg",
+									"@id": "%imageServer%%id%",
 									"profile": "http://iiif.io/api/image/2/level2.json"
 								}
 							}
