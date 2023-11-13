@@ -3,16 +3,16 @@
     "@type": "sc:Manifest",
     "@id": "http://nhm-iiif.loc/pid/NHMW-BOT-W0273868/manifest.json",
     "label": "NHMW-BOT-W0273868",
-    "description": "",
+    "description": "NHMW-BOT-W0273868 manifest",
     "attribution": "NHM",
-    "logo": "/resources/images/nhmw-logo-iiif.svg",
+    "logo": "http://localhost:8182/iiif/3/nhmw-logo.png/full/max/0/default.jpg",
     "sequences": [
         {
             "@type": "sc:Sequence",
             "canvases": [
                 {
                     "@type": "sc:Canvas",
-                    "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868/canvas.json",
+                    "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868/1/canvas.json",
                     "label": "NHMW-BOT-W0273868 - NHMW-BOT-W0273868.jpg",
                     "width": 7017,
                     "height": 9084,
@@ -29,10 +29,12 @@
                     "images": [
                         {
                             "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868.jpg/full/max/0/default.jpg",
-                            "@type": "dctypes:Image",
-                            "on": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868.jpg/canvas/1",
+                            "@type": "oa:Annotation",
+                            "motivation": "sc:painting",
+                            "on": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868/1/canvas.json",
                             "resource": {
                                 "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868.jpg/full/max/0/default.jpg",
+                                "@type": "dctypes:Image",
                                 "height": 9084,
                                 "width": 7017
                             }
@@ -47,7 +49,7 @@
                 },
                 {
                     "@type": "sc:Canvas",
-                    "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868/canvas.json",
+                    "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868/2/canvas.json",
                     "label": "NHMW-BOT-W0273868 - NHMW-BOT-W0273868_a.jpg",
                     "width": 7017,
                     "height": 9120,
@@ -64,10 +66,12 @@
                     "images": [
                         {
                             "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868_a.jpg/full/max/0/default.jpg",
-                            "@type": "dctypes:Image",
-                            "on": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868_a.jpg/canvas/2",
+                            "@type": "oa:Annotation",
+                            "motivation": "sc:painting",
+                            "on": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868/2/canvas.json",
                             "resource": {
                                 "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868_a.jpg/full/max/0/default.jpg",
+                                "@type": "dctypes:Image",
                                 "height": 9120,
                                 "width": 7017
                             }

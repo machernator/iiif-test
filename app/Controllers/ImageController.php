@@ -28,7 +28,7 @@ class ImageController extends Controller {
 
 		$pid = $params['pid'] ?? null;
 		$manifest = $this->manifestModel->manifestPID($pid);
-		// echo file_get_contents(APP_ROOT . "/manifests/new-manifest.json", 'r');return;
+		echo file_get_contents(APP_ROOT . "/manifests/new-manifest.json", 'r');return;
 		echo json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 	}
 

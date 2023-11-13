@@ -79,6 +79,7 @@ class ManifestModel extends Model
 		// Set manifest attributes
 		$manifest['@id'] = $this->f3->get('currentUrl');
 		$manifest['label'] = $pid;
+		$manifest['logo'] = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $manifest['logo'];
 		$canvasNr = 1;
 		foreach ($allMedia as $media) {
 			// Create Copy of canvas
@@ -89,7 +90,7 @@ class ManifestModel extends Model
 			$fileName = $info['filename'] . $this->imageServerExtension;
 
 			// Set canvas attributes
-			$canvas['@id'] = $server . $media['PID'] . '/canvas.json';
+			$canvas['@id'] = "{$server}{$media['PID']}/canvas{$canvasNr}.json";
 			$canvas['label'] = $media['media_title'] ? $media['media_title'] : $media['PID'] . ' - ' . $fileName;
 			$canvas['height'] = $media['height'];
 			$canvas['width'] = $media['width'];
