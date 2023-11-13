@@ -1,0 +1,76 @@
+[
+    {
+        "MEDIA_ID": 2965,
+        "is_published": 0,
+        "PID": "NHMW-BOT-W0273868",
+        "COLL_ID": 25,
+        "abbreviation": "BOT",
+        "collection_name_de": "Botanische Sammlungen",
+        "collection_name_en": "Botany Collection",
+        "media_title": "",
+        "file_path": "R:\\botanik\\archive\\BOT\\NHMW-BOT-W0273868",
+        "file_name": "NHMW-BOT-W0273868.tif",
+        "suffix": "tif",
+        "file_size": 145208460,
+        "width": 7017,
+        "height": 9084,
+        "mime_type": "image\/tiff",
+        "datetime_original": {
+            "date": "2023-11-06 22:27:52.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        },
+        "modify_date": {
+            "date": "2023-11-06 22:27:52.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        },
+        "description": null,
+        "copyright": "CC",
+        "media_creator": null,
+        "exif_data_whitelist": "{\"Make\": \"Leaf\", \"Model\": \"Credo 80\", \"ISO\": 100, \"DateTimeOriginal\": \"2023:10:27 11:15:04+02:00\", \"ApertureValue\": 21.9999981908717, \"FocalLength\": 120, \"ImageUniqueID\": \"00004C20007200000400E058000223A7\", \"LensModel\": \"Phase One Digital AF 120mm f\/4 Macro\", \"CopyrightNotice\": \"NHM Vienna\", \"ImageUniqueId\": \"NHMW-BOT-W0273868\", \"ImageWidth\": \"7017\", \"ImageHeight\": \"9084\", \"Artist\": \"Michael Polansky\"}",
+        "user_created": "thomas",
+        "date_created": {
+            "date": "2023-11-06 22:28:02.753000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        }
+    },
+    {
+        "MEDIA_ID": 2966,
+        "is_published": 0,
+        "PID": "NHMW-BOT-W0273868",
+        "COLL_ID": 25,
+        "abbreviation": "BOT",
+        "collection_name_de": "Botanische Sammlungen",
+        "collection_name_en": "Botany Collection",
+        "media_title": "",
+        "file_path": "R:\\botanik\\archive\\BOT\\NHMW-BOT-W0273868",
+        "file_name": "NHMW-BOT-W0273868_a.tif",
+        "suffix": "tif",
+        "file_size": 144381516,
+        "width": 7017,
+        "height": 9120,
+        "mime_type": "image\/tiff",
+        "datetime_original": {
+            "date": "2023-11-06 22:28:24.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        },
+        "modify_date": {
+            "date": "2023-11-06 22:28:24.000000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        },
+        "description": null,
+        "copyright": "CC",
+        "media_creator": null,
+        "exif_data_whitelist": "{\"Make\": \"Leaf\", \"Model\": \"Credo 80\", \"ISO\": 100, \"DateTimeOriginal\": \"2023:10:27 11:15:07+02:00\", \"ApertureValue\": 21.9999981908717, \"FocalLength\": 120, \"ImageUniqueID\": \"00004C20007200000400E058000223A8\", \"LensModel\": \"Phase One Digital AF 120mm f\/4 Macro\", \"CopyrightNotice\": \"NHM Vienna\", \"ImageUniqueId\": \"NHMW-BOT-W0273868\", \"ImageWidth\": \"7017\", \"ImageHeight\": \"9120\", \"Artist\": \"Michael Polansky\"}",
+        "user_created": "thomas",
+        "date_created": {
+            "date": "2023-11-06 22:28:35.720000",
+            "timezone_type": 3,
+            "timezone": "UTC"
+        }
+    }
+]

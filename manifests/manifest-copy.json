@@ -68,6 +68,7 @@
 					],
 					"images": [
 						{
+							"@context": "http://iiif.io/api/presentation/2/context.json",
 							"@type": "oa:Annotation",
 							"motivation": "sc:painting",
 							"on": "%imageServer%%id%/canvas/1",

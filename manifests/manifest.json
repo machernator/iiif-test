@@ -6,5 +6,10 @@
 	"description": "",
 	"attribution": "NHM",
 	"logo": "/resources/images/nhmw-logo-iiif.svg",
-	"sequences": []
+	"sequences": [
+		{
+			"@type": "sc:Sequence",
+			"canvases": []
+		}
+	]
 }

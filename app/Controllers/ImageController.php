@@ -4,17 +4,17 @@ use \NHM\SystemHelper as SH;
 
 class ImageController extends Controller {
 	private $prefix = 'iiif';
-	private $imageModel;
+	private $manifestModel;
 
 	public function __construct(\Base $f3, array $params) {
 		parent::__construct($f3, $params);
-		$this->imageModel = new \Models\ImageModel();
+		$this->manifestModel = new \Models\ManifestModel();
 	}
 
 	public function manifest(\Base $f3, array $params) {
 		header('Content-Type: application/json');
 		$id = $params['imgId'] ?? null;
-		$manifest = $this->imageModel->manifest($id);
+		$manifest = $this->manifestModel->manifest($id);
 		if ($manifest === '') {
 			die('{"error": "Manifest not found"}');
 		}
@@ -22,7 +22,19 @@ class ImageController extends Controller {
 		echo $manifest;
 	}
 
+	public function manifestPID(\Base $f3, array $params) {
+		header("Access-Control-Allow-Origin", "*");
+		header('Content-Type: application/json');
+
+		$pid = $params['pid'] ?? null;
+		$manifest = $this->manifestModel->manifestPID($pid);
+		// echo file_get_contents(APP_ROOT . "/manifests/new-manifest.json", 'r');return;
+		echo json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+	}
+
 	public function viewerMirador(\Base $f3, array $params) {
+
+		$manifestModel = new \Models\ManifestModel();
 		$id = $params['imgId'] ?? null;
 		$f3->set('imgId', $id);
 		$f3->set('sitetitle', 'NHM Digitalisate - Viewer');

@@ -1,0 +1,86 @@
+{
+    "@context": "http://iiif.io/api/presentation/2/context.json",
+    "@type": "sc:Manifest",
+    "@id": "http://nhm-iiif.loc/pid/NHMW-BOT-W0273868/manifest.json",
+    "label": "NHMW-BOT-W0273868",
+    "description": "",
+    "attribution": "NHM",
+    "logo": "/resources/images/nhmw-logo-iiif.svg",
+    "sequences": [
+        {
+            "@type": "sc:Sequence",
+            "canvases": [
+                {
+                    "@type": "sc:Canvas",
+                    "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868/canvas.json",
+                    "label": "NHMW-BOT-W0273868 - NHMW-BOT-W0273868.jpg",
+                    "width": 7017,
+                    "height": 9084,
+                    "metadata": [
+                        {
+                            "label": "Created",
+                            "value": "2023-11-06 22:27:52"
+                        },
+                        {
+                            "label": "License",
+                            "value": "CC"
+                        }
+                    ],
+                    "images": [
+                        {
+                            "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868.jpg/full/max/0/default.jpg",
+                            "@type": "dctypes:Image",
+                            "on": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868.jpg/canvas/1",
+                            "resource": {
+                                "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868.jpg/full/max/0/default.jpg",
+                                "height": 9084,
+                                "width": 7017
+                            }
+                        }
+                    ],
+                    "thumbnail": {
+                        "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868.jpg/full/120,/0/default.jpg",
+                        "@type": "dctypes:Image",
+                        "height": 155,
+                        "width": 120
+                    }
+                },
+                {
+                    "@type": "sc:Canvas",
+                    "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868/canvas.json",
+                    "label": "NHMW-BOT-W0273868 - NHMW-BOT-W0273868_a.jpg",
+                    "width": 7017,
+                    "height": 9120,
+                    "metadata": [
+                        {
+                            "label": "Created",
+                            "value": "2023-11-06 22:28:24"
+                        },
+                        {
+                            "label": "License",
+                            "value": "CC"
+                        }
+                    ],
+                    "images": [
+                        {
+                            "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868_a.jpg/full/max/0/default.jpg",
+                            "@type": "dctypes:Image",
+                            "on": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868_a.jpg/canvas/2",
+                            "resource": {
+                                "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868_a.jpg/full/max/0/default.jpg",
+                                "height": 9120,
+                                "width": 7017
+                            }
+                        }
+                    ],
+                    "thumbnail": {
+                        "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868_a.jpg/full/120,/0/default.jpg",
+                        "@type": "dctypes:Image",
+                        "height": 156,
+                        "width": 120
+                    }
+                }
+            ]
+        }
+    ]
+}

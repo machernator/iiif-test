@@ -5,6 +5,9 @@
 	"resource": {
 		"@type": "dctypes:Image",
 		"@id": "",
+		"width": 0,
+		"height": 0,
+		"format": "image/jpeg",
 		"service": {
 			"@context": "http://iiif.io/api/image/2/context.json",
 			"@id": "",

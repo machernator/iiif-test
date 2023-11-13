@@ -19,7 +19,7 @@
 		var mirador = Mirador.viewer({
 			"id": "miradorViewer",
 			"manifests": {
-				"/iiif/{{ @imgId }}/manifest.json": {
+				"/pid/{{ @imgId }}/manifest.json": {
 					"provider": "NHMW"
 				}
 			},
@@ -73,9 +73,9 @@
 			},
 			"windows": [
 				{
-					"loadedManifest": "/iiif/{{ @imgId }}/manifest.json",
+					"loadedManifest": "/pid/{{ @imgId }}/manifest.json",
 					"canvasIndex": 1,
-					"thumbnailNavigationPosition": 'off'
+					"thumbnailNavigationPosition": 'on'
 				}
 			]
 		});

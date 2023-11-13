@@ -1,0 +1,30 @@
+{
+	"@id": "https://iiif.wellcomecollection.org/thumbs/b18035723_0004.JP2/full/72,100/0/default.jpg",
+	"@type": "dctypes:Image",
+	"service": {
+		"@context": "http://iiif.io/api/image/2/context.json",
+		"@id": "https://iiif.wellcomecollection.org/thumbs/b18035723_0004.JP2",
+		"profile": "http://iiif.io/api/image/2/level0.json",
+		"protocol": "http://iiif.io/api/image",
+		"width": 732,
+		"height": 1024,
+		"sizes": [
+			{
+				"width": 72,
+				"height": 100
+			},
+			{
+				"width": 143,
+				"height": 200
+			},
+			{
+				"width": 286,
+				"height": 400
+			},
+			{
+				"width": 732,
+				"height": 1024
+			}
+		]
+	}
+}
