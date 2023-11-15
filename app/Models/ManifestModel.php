@@ -79,27 +79,36 @@ class ManifestModel extends Model
 		// Set manifest attributes
 		$manifest['@id'] = $this->f3->get('currentUrl');
 		$manifest['label'] = $pid;
-		$manifest['logo'] = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $manifest['logo'];
+		$manifest['attribution'] = "Natural History Museum Vienna";
+		$manifest['logo'] = $server . "nhmw-logo.png/full/80,/0/default.png";
+		$manifest['description'] = "Manifest for PID: $pid";
 		$canvasNr = 1;
+
 		foreach ($allMedia as $media) {
 			// Create Copy of canvas
 			$canvas = $this->canvas;
+
 
 			// Filename on imageserver, change extension
 			$info = pathinfo($media['file_name']);
 			$fileName = $info['filename'] . $this->imageServerExtension;
 
 			// Set canvas attributes
-			$canvas['@id'] = "{$server}{$media['PID']}/canvas{$canvasNr}.json";
+			$canvasId = "{$server}{$media['PID']}/canvas/$canvasNr";
+			$canvas['@id'] = $canvasId;
 			$canvas['label'] = $media['media_title'] ? $media['media_title'] : $media['PID'] . ' - ' . $fileName;
 			$canvas['height'] = $media['height'];
 			$canvas['width'] = $media['width'];
+			// set first canvas as start canvas
+			if ($canvasNr === 1) {
+				$manifest['sequences'][0]['startCanvas'] = $canvas['@id'];
+			}
 			// calculate height of thumbnail
 			$tnHeight = round($media['height'] / $media['width'] * $this->thumbNailWidth);
 			// Thumbnail
 			$canvas['thumbnail'] = [
 				// example: http://localhost:8182/iiif/3/NHMW-BOT-W0273868.jpg/full/120,/0/default.jpg
-				"@id" => $server . "$fileName/full/{$this->thumbNailWidth},/0/default.jpg",
+				"@id" => "{$server}{$fileName}/full/120,/0/default.jpg",
 				"@type"=> "dctypes:Image",
 				"height"=> $tnHeight,
 				"width"=> $this->thumbNailWidth
@@ -110,12 +119,25 @@ class ManifestModel extends Model
 			$canvas['metadata'] = $metadata;
 
 			// images
-			$canvas['images'] = $this->images(
-				fileName: $fileName,
-				width: $media['width'],
-				height: $media['height'],
-				canvasNr: $canvasNr
-			);
+			// $canvas['images'] = $this->images(
+			// 	fileName: $fileName,
+			// 	width: $media['width'],
+			// 	height: $media['height'],
+			// 	canvasNr: $canvasNr
+			// );
+
+			$canvas['images'][] =  [
+				"@id" => $server . "$fileName/full/max/0/default.jpg",
+				"@type" => "oa:Annotation",
+				"motivation" => "sc:painting",
+				"on" => $canvasId,
+				"resource" => [
+					"@id" => "{$server}{$fileName}/full/max/0/default.jpg",
+					"@type" => "dctypes:Image",
+					"height" => $media['height'],
+					"width" => $media['width'],
+				]
+			];
 
 			// add canvas to manifest
 			$manifest['sequences'][0]['canvases'][] = $canvas;

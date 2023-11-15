@@ -5,10 +5,11 @@
     "label": "NHMW-BOT-W0273868",
     "description": "NHMW-BOT-W0273868 manifest",
     "attribution": "NHM",
-    "logo": "http://localhost:8182/iiif/3/nhmw-logo.png/full/max/0/default.jpg",
+    "logo": "https://iiif-1.nhm.at/iiif/3/nhmw-logo.png/full/80,/0/default.png",
     "sequences": [
         {
             "@type": "sc:Sequence",
+			"startCanvas": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868/1/canvas.json",
             "canvases": [
                 {
                     "@type": "sc:Canvas",
@@ -80,6 +81,7 @@
                     "thumbnail": {
                         "@id": "http://localhost:8182/iiif/3/NHMW-BOT-W0273868_a.jpg/full/120,/0/default.jpg",
                         "@type": "dctypes:Image",
+						"format": "image/jpeg",
                         "height": 156,
                         "width": 120
                     }

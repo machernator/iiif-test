@@ -242,6 +242,8 @@ a.overlay-link {
 // Mirador overrides
 /////////////////////////////////
 .mirador {
+	width: 100%;
+	min-height: 420px;
 	a[href*="//"]::before
 	{
 		content: "";

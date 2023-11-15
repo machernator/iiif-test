@@ -1,0 +1,134 @@
+{
+
+	"attribution": "Provided by Ghent University Library",
+	"logo": "https://adore.ugent.be/IIIF/img/logo_i.svg",
+	"related": [
+		{
+			"@id": "https://lib.ugent.be/viewer/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91",
+			"format": "text/html"
+		}
+	],
+	"description": "Het document bevat een overeenkomst tussen een corporatie en haar leiders. De leden van de corporatie van jagers (en waarschijnlijk ook van vissers) gaan de verbintenis aan t.o.v. Flavius Hermauos en Flavius Dios, hen als hun chefs te erkennen voor de duu",
+	"@type": "sc:Manifest",
+	"thumbnail": {
+		"width": 226,
+		"format": "image/jpeg",
+		"@id": "https://adore.ugent.be/IIIF/images/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91%3ADS.1/0,0,6215,15076/226,/0/default.jpg",
+		"@type": "dctypes:Image",
+		"height": 548
+	},
+	"@context": "http://iiif.io/api/presentation/2/context.json",
+	"license": "http://creativecommons.org/publicdomain/mark/1.0/",
+	"sequences": [
+		{
+			"rendering": [
+				{
+					"label": "Download all images (562.38 MB)",
+					"format": "application/zip",
+					"@id": "https://lib.ugent.be/catalog/rug01:001484515/requests/new?objectid=archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91"
+				}
+			],
+			"startCanvas": "https://adore.ugent.be/IIIF/manifests/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91/canvases/DS.1",
+			"@type": "sc:Sequence",
+			"canvases": [
+				{
+					"rendering": [
+						{
+							"label": "Download as jpeg2000 (78.77 MB)",
+							"@id": "https://adore.ugent.be/OpenURL/resolve?rft_id=archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91%3ADS.1&svc_id=original",
+							"format": "image/jp2"
+						}
+					],
+					"@id": "https://adore.ugent.be/IIIF/manifests/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91/canvases/DS.1",
+					"attribution": "Provided by Ghent University Library",
+					"width": 6215,
+					"height": 15076,
+					"images": [
+						{
+							"@id": "https://adore.ugent.be/IIIF/manifests/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91/canvases/DS.1/image-annotations/0",
+							"on": "https://adore.ugent.be/IIIF/manifests/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91/canvases/DS.1",
+							"resource": {
+								"@type": "dctypes:Image",
+								"service": {
+									"@context": "http://iiif.io/api/image/2/context.json",
+									"@id": "https://adore.ugent.be/IIIF/images/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91%3ADS.1",
+									"profile": "http://iiif.io/api/image/2/level1.json"
+								},
+								"label": "BHSL-PAP-000044_2010_0001_AC.jp2",
+								"height": 15076,
+								"@id": "https://adore.ugent.be/IIIF/images/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91%3ADS.1/full/full/0/native.jpg",
+								"format": "image/jpeg",
+								"width": 6215
+							},
+							"@type": "oa:Annotation",
+							"motivation": "sc:Painting"
+						}
+					],
+					"label": "1",
+					"thumbnail": {
+						"@id": "https://adore.ugent.be/IIIF/images/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91%3ADS.1/0,0,6215,15076/226,/0/default.jpg",
+						"format": "image/jpeg",
+						"width": 226,
+						"@type": "dctypes:Image",
+						"height": 548
+					},
+					"@type": "sc:Canvas",
+					"license": "http://creativecommons.org/publicdomain/mark/1.0/"
+				},
+				{
+					"license": "http://creativecommons.org/publicdomain/mark/1.0/",
+					"label": "2",
+					"@type": "sc:Canvas",
+					"thumbnail": {
+						"@type": "dctypes:Image",
+						"height": 545,
+						"@id": "https://adore.ugent.be/IIIF/images/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91%3ADS.3/0,0,6235,15036/226,/0/default.jpg",
+						"format": "image/jpeg",
+						"width": 226
+					},
+					"height": 15036,
+					"images": [
+						{
+							"motivation": "sc:Painting",
+							"@type": "oa:Annotation",
+							"resource": {
+								"@id": "https://adore.ugent.be/IIIF/images/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91%3ADS.3/full/full/0/native.jpg",
+								"format": "image/jpeg",
+								"width": 6235,
+								"height": 15036,
+								"service": {
+									"profile": "http://iiif.io/api/image/2/level1.json",
+									"@context": "http://iiif.io/api/image/2/context.json",
+									"@id": "https://adore.ugent.be/IIIF/images/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91%3ADS.3"
+								},
+								"@type": "dctypes:Image",
+								"label": "BHSL-PAP-000044_2010_0002_AC.jp2"
+							},
+							"on": "https://adore.ugent.be/IIIF/manifests/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91/canvases/DS.3",
+							"@id": "https://adore.ugent.be/IIIF/manifests/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91/canvases/DS.3/image-annotations/0"
+						}
+					],
+					"@id": "https://adore.ugent.be/IIIF/manifests/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91/canvases/DS.3",
+					"width": 6235,
+					"attribution": "Provided by Ghent University Library",
+					"rendering": [
+						{
+							"format": "image/jp2",
+							"@id": "https://adore.ugent.be/OpenURL/resolve?rft_id=archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91%3ADS.3&svc_id=original",
+							"label": "Download as jpeg2000 (78.29 MB)"
+						}
+					]
+				}
+			],
+			"viewingDirection": "left-to-right",
+			"@id": "https://adore.ugent.be/IIIF/manifests/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91/sequences/0"
+		}
+	],
+	"seeAlso": {
+		"format": "application/marcxml+xml",
+		"@id": "https://lib.ugent.be/catalog/rug01:001484515.marcxml",
+		"label": "Bibliographical description in MARC XML"
+	},
+	"@id": "https://adore.ugent.be/IIIF/manifests/archive.ugent.be%3A4B39C8CA-6FF9-11E1-8C42-C8A93B7C8C91",
+	"label": "Document uit het archief van de dichter Dioskoros van Aphrodite"
+}
