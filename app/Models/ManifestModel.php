@@ -37,27 +37,22 @@ class ManifestModel extends Model
 		$sequenceFile = @file_get_contents(__DIR__ . "{$this->manifestPath}sequence.json", 'r');
 		$imageFile = @file_get_contents(__DIR__ . "{$this->manifestPath}image.json", 'r');
 
-		// REMINDER:
-		// use array_values for numbered arrays when converting back to json.
-		// Otherwise the numbers will be used as keys.
 		$this->manifest = json_decode($manifestFile, true);
 		$this->sequence = json_decode($sequenceFile, true);
 		$this->canvas = json_decode($canvasFile, true);
 		$this->image = json_decode($imageFile, true);
 	}
 	/**
-	 * Create image manifest
+	 * Create single image manifest
 	 *
 	 * @return  array
 	 */
-	public function manifest(string $id): string
+	public function manifestFilename(string $filename): array
 	{
-		// Set manifest attributes
-		if ($id === '') return '';
-		$server = $this->f3->get('manifestServer');
-		$this->manifest['@id'] = $server . $id . '/manifest.json';
-
-		return json_encode($this->manifest);
+		// Get all Data for filename
+		$allMedia = $this->showMediaFilename($filename);
+		// Create manifest
+		return $this->createManifest($filename, $allMedia);
 	}
 
 	/**
@@ -68,85 +63,17 @@ class ManifestModel extends Model
 	 */
 	public function manifestPID(string $pid): array
 	{
-		// echo  @file_get_contents(__DIR__ . "{$this->manifestPath}manifest-copy.json", 'r');
-		// Create Copy of manifest
-		$manifest = $this->manifest;
-		// Set manifest attributes
-		$server = $this->f3->get('imageServer');
 		// Get all Data for current PID
 		$allMedia = $this->showMediaPID($pid);
-
-		// Set manifest attributes
-		$manifest['@id'] = $this->f3->get('currentUrl');
-		$manifest['label'] = $pid;
-		$manifest['attribution'] = "Natural History Museum Vienna";
-		$manifest['logo'] = $server . "nhmw-logo.png/full/80,/0/default.png";
-		$manifest['description'] = "Manifest for PID: $pid";
-		$canvasNr = 1;
-
-		foreach ($allMedia as $media) {
-			// Create Copy of canvas
-			$canvas = $this->canvas;
-
-
-			// Filename on imageserver, change extension
-			$info = pathinfo($media['file_name']);
-			$fileName = $info['filename'] . $this->imageServerExtension;
-
-			// Set canvas attributes
-			$canvasId = "{$server}{$media['PID']}/canvas/$canvasNr";
-			$canvas['@id'] = $canvasId;
-			$canvas['label'] = $media['media_title'] ? $media['media_title'] : $media['PID'] . ' - ' . $fileName;
-			$canvas['height'] = $media['height'];
-			$canvas['width'] = $media['width'];
-			// set first canvas as start canvas
-			if ($canvasNr === 1) {
-				$manifest['sequences'][0]['startCanvas'] = $canvas['@id'];
-			}
-			// calculate height of thumbnail
-			$tnHeight = round($media['height'] / $media['width'] * $this->thumbNailWidth);
-			// Thumbnail
-			$canvas['thumbnail'] = [
-				// example: http://localhost:8182/iiif/3/NHMW-BOT-W0273868.jpg/full/120,/0/default.jpg
-				"@id" => "{$server}{$fileName}/full/120,/0/default.jpg",
-				"@type"=> "dctypes:Image",
-				"height"=> $tnHeight,
-				"width"=> $this->thumbNailWidth
-			];
-
-			// Metadata
-			$metadata = $this->metaData($media);
-			$canvas['metadata'] = $metadata;
-
-			// images
-			// $canvas['images'] = $this->images(
-			// 	fileName: $fileName,
-			// 	width: $media['width'],
-			// 	height: $media['height'],
-			// 	canvasNr: $canvasNr
-			// );
-
-			$canvas['images'][] =  [
-				"@id" => $server . "$fileName/full/max/0/default.jpg",
-				"@type" => "oa:Annotation",
-				"motivation" => "sc:painting",
-				"on" => $canvasId,
-				"resource" => [
-					"@id" => "{$server}{$fileName}/full/max/0/default.jpg",
-					"@type" => "dctypes:Image",
-					"height" => $media['height'],
-					"width" => $media['width'],
-				]
-			];
-
-			// add canvas to manifest
-			$manifest['sequences'][0]['canvases'][] = $canvas;
-			$canvasNr++;
-		}
-
-		return $manifest;
+		// Create manifest
+		return $this->createManifest($pid, $allMedia);
 	}
 
+	/**
+	 * List all media
+	 *
+	 * @return array
+	 */
 	public function listMedia(): array
 	{
 		$sp   = 'EXEC app.sp_List_Media';
@@ -178,12 +105,30 @@ class ManifestModel extends Model
 	}
 
 	/**
+	 * Get media data for a given filename
+	 *
+	 * @param string $filename
+	 * @return array
+	 */
+	public function showMediaFilename(string $filename): array
+	{
+		$sp   = 'EXEC app.sp_Show_Media_filename @filename = ?';
+		$stmt = $this->executeResult($sp, [$filename]);
+		$res = [];
+		if ($stmt === false) return $res;
+		if ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+			$res = $row;
+		}
+		return $res;
+	}
+
+	/**
 	 * Create array of metadata from allowed fields
 	 *
 	 * @param array $data
 	 * @return array
 	 */
-	private function metaData(array $data):array
+	private function metaData(array $data): array
 	{
 		$metaData = [];
 		foreach ($data as $key => $value) {
@@ -200,28 +145,70 @@ class ManifestModel extends Model
 		return $metaData;
 	}
 
-	private function images(
-		string $fileName,
-		int $width,
-		int $height,
-		int $canvasNr = 1
-		):array
+	private function createManifest(string $id, array $data): array
 	{
+		// Create manifest
+		$manifest = $this->manifest;
+		// Set manifest attributes
 		$server = $this->f3->get('imageServer');
-		$images = [];
 
-		// Image
-		$images[] = [
-			"@id" => $server . "$fileName/full/max/0/default.jpg",
-			"@type" => "dctypes:Image",
+		// Set manifest attributes
+		$manifest['@id'] = $this->f3->get('currentUrl');
+		$manifest['label'] = $id;
+		$manifest['attribution'] = "Natural History Museum Vienna";
+		$manifest['logo'] = $server . "nhmw-logo.png/full/80,/0/default.png";
+		$manifest['description'] = "Manifest for: $id";
+		$canvasNr = 1;
 
-			"on" => "{$server}$fileName/canvas/$canvasNr",
-			"resource" => [
-				"@id" => "{$server}{$fileName}/full/max/0/default.jpg",
-				"height" => $height,
-				"width" => $width,
-			]
-		];
-		return $images;
+		foreach ($data as $media) {
+			// Create Copy of canvas
+			$canvas = $this->canvas;
+			// Filename on imageserver, change extension
+			$info = pathinfo($media['file_name']);
+			$fileName = $info['filename'] . $this->imageServerExtension;
+			// Set canvas attributes
+			$canvasId = "{$server}{$media['PID']}/canvas/$canvasNr";
+			$canvas['@id'] = $canvasId;
+			$canvas['label'] = $media['media_title'] ? $media['media_title'] : $media['PID'] . ' - ' . $fileName;
+			$canvas['height'] = $media['height'];
+			$canvas['width'] = $media['width'];
+			// set first canvas as start canvas
+			if ($canvasNr === 1) {
+				$manifest['sequences'][0]['startCanvas'] = $canvas['@id'];
+			}
+			// calculate height of thumbnail
+			$tnHeight = round($media['height'] / $media['width'] * $this->thumbNailWidth);
+			// Thumbnail
+			$canvas['thumbnail'] = [
+				// example: http://localhost:8182/iiif/3/NHMW-BOT-W0273868.jpg/full/120,/0/default.jpg
+				"@id" => "{$server}{$fileName}/full/120,/0/default.jpg",
+				"@type" => "dctypes:Image",
+				"height" => $tnHeight,
+				"width" => $this->thumbNailWidth
+			];
+
+			// Metadata
+			$metadata = $this->metaData($media);
+			$canvas['metadata'] = $metadata;
+
+			$canvas['images'][] =  [
+				"@id" => $server . "$fileName/full/max/0/default.jpg",
+				"@type" => "oa:Annotation",
+				"motivation" => "sc:painting",
+				"on" => $canvasId,
+				"resource" => [
+					"@id" => "{$server}{$fileName}/full/max/0/default.jpg",
+					"@type" => "dctypes:Image",
+					"height" => $media['height'],
+					"width" => $media['width'],
+				]
+			];
+
+			// add canvas to manifest
+			$manifest['sequences'][0]['canvases'][] = $canvas;
+			$canvasNr++;
+		}
+
+		return $manifest;
 	}
 }

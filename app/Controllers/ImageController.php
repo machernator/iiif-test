@@ -1,42 +1,64 @@
 <?php
+
 namespace Controllers;
+
 use \NHM\SystemHelper as SH;
 
-class ImageController extends Controller {
+class ImageController extends Controller
+{
 	private $prefix = 'iiif';
 	private $manifestModel;
 
-	public function __construct(\Base $f3, array $params) {
+	public function __construct(\Base $f3, array $params)
+	{
 		parent::__construct($f3, $params);
 		$this->manifestModel = new \Models\ManifestModel();
 	}
 
-	public function manifest(\Base $f3, array $params) {
+
+	public function manifest(\Base $f3, array $params)
+	{
+		header("Access-Control-Allow-Origin", "*");
 		header('Content-Type: application/json');
 		$id = $params['imgId'] ?? null;
-		$manifest = $this->manifestModel->manifest($id);
+		$manifest = $this->manifestModel->manifestFilename($id);
 		if ($manifest === '') {
 			die('{"error": "Manifest not found"}');
 		}
-
-		echo $manifest;
-	}
-
-	public function manifestPID(\Base $f3, array $params) {
-		header("Access-Control-Allow-Origin", "*");
-		header('Content-Type: application/json');
-
-		$pid = $params['pid'] ?? null;
-		$manifest = $this->manifestModel->manifestPID($pid);
-		// echo file_get_contents(APP_ROOT . "/manifests/new-manifest.json", 'r');return;
 		echo json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 	}
 
-	public function viewerMirador(\Base $f3, array $params) {
+	/**
+	 * Viewer for IIIF Manifests, generate manifest from PID
+	 *
+	 * @param \Base $f3
+	 * @param array $params
+	 * @return void
+	 */
+	public function manifestPID(\Base $f3, array $params)
+	{
+		header("Access-Control-Allow-Origin", "*");
+		header('Content-Type: application/json');
+		$pid = $params['pid'] ?? null;
+		$manifest = $this->manifestModel->manifestPID($pid);
+		echo json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+	}
 
-		$manifestModel = new \Models\ManifestModel();
+	public function viewerMirador(\Base $f3, array $params)
+	{
 		$id = $params['imgId'] ?? null;
+		$extension = pathinfo($id, PATHINFO_EXTENSION);
+
+		if (in_array((strtolower($extension)), ['jpg', 'jpeg', 'png', 'gif', 'jp2', 'webp'])) {
+			// $id is an image file name
+			$manifestPath = "/$id/manifest.json";
+		} else {
+			// $id is not an image file name
+			$manifestPath = "/pid/$id/manifest.json";
+		}
+
 		$f3->set('imgId', $id);
+		$f3->set('manifestPath', $manifestPath);
 		$f3->set('sitetitle', 'NHM Digitalisate - Viewer');
 		$f3->set('contentSidebar', 'sidebar-viewer');
 		$f3->set('content', $this->content('viewer-mirador'));
@@ -49,7 +71,8 @@ class ImageController extends Controller {
 		echo $this->renderPage('index-single-col.html');
 	}
 
-	public function viewerUniversal(\Base $f3, array $params) {
+	public function viewerUniversal(\Base $f3, array $params)
+	{
 		$id = $params['imgId'] ?? null;
 		$f3->set('imgId', $id);
 		$f3->set('sitetitle', 'NHM Digitalisate - Viewer');

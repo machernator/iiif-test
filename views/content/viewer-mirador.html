@@ -15,7 +15,7 @@
 	const mirador = Mirador.viewer({
 		id: "miradorViewer",
 		manifests: {
-			"/pid/{{ @imgId }}/manifest.json": {
+			"{{ @manifestPath }}": {
 				"provider": "NHMW"
 			}
 		},
@@ -90,7 +90,7 @@
 		},
 		"windows": [
 			{
-				"loadedManifest": "/pid/{{ @imgId }}/manifest.json",
+				"loadedManifest": "{{ @manifestPath }}",
 				"canvasIndex": 1,
 				"thumbnailNavigationPosition": 'on',
 				"availableViews": ['ThumbnailsView', 'ImageView']
