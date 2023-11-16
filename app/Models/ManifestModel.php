@@ -22,8 +22,6 @@ class ManifestModel extends Model
 	];
 
 	private $manifestPath = "/../../manifests/";
-	// Extension used on the image server
-	private $imageServerExtension = ".jpg";
 	private $thumbNailWidth = 120;
 
 	/**
@@ -70,23 +68,6 @@ class ManifestModel extends Model
 	}
 
 	/**
-	 * List all media
-	 *
-	 * @return array
-	 */
-	public function listMedia(): array
-	{
-		$sp   = 'EXEC app.sp_List_Media';
-		$stmt = $this->executeResult($sp);
-		$res = [];
-		if ($stmt === false) return $res;
-		while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-			$res[] = $row;
-		}
-		return $res;
-	}
-
-	/**
 	 * Get all media for a given PID
 	 *
 	 * @param string $pid
@@ -117,7 +98,7 @@ class ManifestModel extends Model
 		$res = [];
 		if ($stmt === false) return $res;
 		if ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-			$res = $row;
+			$res[] = $row;
 		}
 		return $res;
 	}
@@ -163,9 +144,8 @@ class ManifestModel extends Model
 		foreach ($data as $media) {
 			// Create Copy of canvas
 			$canvas = $this->canvas;
-			// Filename on imageserver, change extension
-			$info = pathinfo($media['file_name']);
-			$fileName = $info['filename'] . $this->imageServerExtension;
+			// Filename on imageserver
+			$fileName = $media['file_name'] . $media['suffix_iiif'];
 			// Set canvas attributes
 			$canvasId = "{$server}{$media['PID']}/canvas/$canvasNr";
 			$canvas['@id'] = $canvasId;

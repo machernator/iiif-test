@@ -21,6 +21,7 @@ class ImageController extends Controller
 		header("Access-Control-Allow-Origin", "*");
 		header('Content-Type: application/json');
 		$id = $params['imgId'] ?? null;
+
 		$manifest = $this->manifestModel->manifestFilename($id);
 		if ($manifest === '') {
 			die('{"error": "Manifest not found"}');
@@ -48,9 +49,9 @@ class ImageController extends Controller
 	{
 		$id = $params['imgId'] ?? null;
 		$extension = pathinfo($id, PATHINFO_EXTENSION);
-
-		if (in_array((strtolower($extension)), ['jpg', 'jpeg', 'png', 'gif', 'jp2', 'webp'])) {
+		if ($extension && in_array((strtolower($extension)), ['jpg', 'jpeg', 'png', 'gif', 'jp2', 'webp'])) {
 			// $id is an image file name
+			$id = pathinfo($id, PATHINFO_FILENAME);
 			$manifestPath = "/$id/manifest.json";
 		} else {
 			// $id is not an image file name
