@@ -5,7 +5,7 @@ namespace Models;
 use \NHM\SystemHelper as SH;
 use \FormLib\Form;
 
-class ManifestModel extends Model
+class MediaModel extends Model
 {
 	// partials of manifest
 	private $manifest = [];
@@ -81,6 +81,24 @@ class ManifestModel extends Model
 		if ($stmt === false) return $res;
 		while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
 			$res[] = $row;
+		}
+		return $res;
+	}
+
+	public function showObjectPID(string $pid): array
+	{
+		$sp   = 'EXEC app.sp_Show_Object_PID @PID = ?';
+		$stmt = $this->executeResult($sp, [$pid]);
+		$res = [];
+		if ($stmt === false) return $res;
+		if ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+			if ($row["latitude"]) {
+				$row['latitude'] =  number_format((float)$row['latitude'], 6, '.', '');
+			}
+			if ($row["longitude"]) {
+				$row['longitude'] =  number_format((float)$row['longitude'], 6, '.', '');
+			}
+			$res = $row;
 		}
 		return $res;
 	}

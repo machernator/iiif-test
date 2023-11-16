@@ -1,17 +1,19 @@
 <?php
 
 namespace Controllers;
-use \Models\ImageModel as ImageModel;
+
+use \Models\MediaModel as MediaModel;
 use \NHM\SystemHelper as SH;
 
 class IndexController extends Controller
 {
 	private $imageModel;
+	private $mediaModel;
 
 	public function __construct(\Base $f3, array $params)
 	{
 		parent::__construct($f3, $params);
-		$this->imageModel = new ImageModel();
+		$this->mediaModel = new MediaModel();
 	}
 
 	/**
@@ -21,11 +23,44 @@ class IndexController extends Controller
 	 */
 	public function index(\Base $f3, array $params)
 	{
-		$f3->set('sitetitle', 'NHM Digitalisate');
+		$f3->set('sitetitle', 'NHM Objects');
 		$f3->set('content', $this->content('home'));
 		$f3->set('contentSidebar', null);
-		$images = $this->imageModel->listMedia();
-		$f3->set('images', $images);
+
+		//$f3->set('images', $images);
+
+		echo $this->renderPage('index-single-col.html');
+	}
+
+	public function object(\Base $f3, array $params)
+	{
+		$pid = $params['pid'] ?? null;
+		$f3->set('sitetitle', "NHM Objects - $pid");
+		$f3->set('content', $this->content('object'));
+		$f3->set('contentSidebar', null);
+
+		// get object
+		$object = $this->mediaModel->showObjectPID($pid);
+		$media = $this->mediaModel->showMediaPID($pid);
+
+		// description
+		$description = "";
+		if ($object['description'] != null) {
+			$paragraphs = explode("\n", $object['description']);
+			foreach ($paragraphs as $p) {
+				if (trim($p) != "") {
+					$description = $description . "<p>$p</p>";
+				}
+			}
+		}
+		$object['description'] = $description;
+		bdump($media);
+
+		$f3->set('media', $media);
+		$f3->set('object', $object);
+
+
+
 
 		echo $this->renderPage('index-single-col.html');
 	}
@@ -61,5 +96,9 @@ class IndexController extends Controller
 		$this->appendCSS($f3->get('controllercss'));
 
 		echo $this->renderPage();
+	}
+
+	private function nl2P(string $text)
+	{
 	}
 }

@@ -7,12 +7,12 @@ use \NHM\SystemHelper as SH;
 class ImageController extends Controller
 {
 	private $prefix = 'iiif';
-	private $manifestModel;
+	private $mediaModel;
 
 	public function __construct(\Base $f3, array $params)
 	{
 		parent::__construct($f3, $params);
-		$this->manifestModel = new \Models\ManifestModel();
+		$this->mediaModel = new \Models\MediaModel();
 	}
 
 
@@ -22,7 +22,7 @@ class ImageController extends Controller
 		header('Content-Type: application/json');
 		$id = $params['imgId'] ?? null;
 
-		$manifest = $this->manifestModel->manifestFilename($id);
+		$manifest = $this->mediaModel->manifestFilename($id);
 		if ($manifest === '') {
 			die('{"error": "Manifest not found"}');
 		}
@@ -41,7 +41,7 @@ class ImageController extends Controller
 		header("Access-Control-Allow-Origin", "*");
 		header('Content-Type: application/json');
 		$pid = $params['pid'] ?? null;
-		$manifest = $this->manifestModel->manifestPID($pid);
+		$manifest = $this->mediaModel->manifestPID($pid);
 		echo json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 	}
 

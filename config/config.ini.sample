@@ -14,9 +14,6 @@ appMode = "dev"
 ; Image Server
 imageServer = http://host.tld/iiif/3/
 
-; Image Folders
-imageFolder = /path/to/images/on/iiif/server/
-
 ; locale for numbers and dates. Overwrites app.ini default settings Used in document-head.php to set global JS Variables
 appLocale = "de-DE"
 appDecimalPoint = ","

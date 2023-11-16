@@ -1,0 +1,89 @@
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			<h1>{{ @object.media_title }}</h1>
+			<check if="{{ @object.description }}">
+				<true>
+					{{ @object.description | raw}}
+				</true>
+				<false>
+					<p>No description available</p>
+				</false>
+			</check>
+
+			<h2>Details</h2>
+			<table  class="table table-striped">
+				<tbody >
+					<tr>
+						<th  class="col-4">Collection</th>
+						<td  class="col-8">
+							<div>{{ @object.collection_name_en }}</div>
+						</td>
+					</tr>
+					<tr>
+						<th>Creator</th>
+						<td>{{ @object.media_creator }}</td>
+					</tr>
+					<tr>
+						<th>Vernaculars from associated taxon</th>
+						<td>—</td>
+					</tr>
+					<check if="{{ @object.copyright }}">
+						<tr>
+							<th>License information</th>
+							<td>{{ @object.copyright }}</td>
+						</tr>
+					</check>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-12 col-md-5">
+			<check if="{{ false }}">
+				<ul class="gallery-auto-fit list-unstyled mb-5">
+					<repeat group="{{ @images }}" value="{{ @image }}">
+						<li>
+							<a href="{{ 'viewerMirador', 'imgId=' . @image.iiif_id | alias }}" target="_blank">
+								<img src="{{ @imageServer . @image.iiif_id . '/full/240,/0/default.jpg' }}"
+									alt="{{ @image.media_title }}"
+									class="gallery-image">
+							</a>
+							<button class="position-absolute btn-icon bottom-0 end-0 translate-middle badge rounded-pill bg-info border-0"
+								title="{{ @image.media_title }}"
+								aria-label="Details"
+								data-bs-container="body"
+								data-bs-toggle="popover"
+								data-bs-trigger="focus"
+								data-bs-placement="auto"
+								data-bs-custom-class="custom-popover"
+								data-bs-content="{{ @image.description }}">
+								<svg class="light">
+									<use href="{{ @icons }}/fa-solid.svg#ellipsis"></use>
+								</svg>
+							</button>
+						</li>
+					</repeat>
+				</ul>
+			</check>
+
+			<check if="{{ @object.latitude && @object.longitude }}">
+				<div class="mb-5">
+					<div class="ratio ratio-1x1 mb-2">
+						<iframe frameborder="0" scrolling="no" src="https://www.openstreetmap.org/export/embed.html?bbox={{ @object.longitude - 0.005 }}%2C{{ @object.latitude - 0.0125 }}%2C{{ @object.longitude - 0.005 }}%2C{{ @object.latitude - 0.0125 }}&amp;layer=mapnik&amp;marker={{ @object.latitude }}%2C{{ @object.longitude }}" style="border: 1px solid #ced4da; width: 100%; border-radius: 2;"></iframe>
+					</div>
+					<small class="d-flex justify-content-end"><a href="https://www.openstreetmap.org/?mlat={{ @object.latitude }}&amp;mlon={{ @object.longitude }}#map=15/@var
+					{{ @object.latitude }}/{{ @object.longitude }}" target="_blank">{{ _tr('largerMap') }}</a></small>
+				</div>
+			</check>
+		</div>
+	</div>
+</div>
+
+<script>
+	(function () {
+		var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+		var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+			return new bootstrap.Popover(popoverTriggerEl)
+		})
+	}());
+
+</script>
