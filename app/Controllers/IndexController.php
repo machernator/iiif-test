@@ -44,15 +44,17 @@ class IndexController extends Controller
 		$media = $this->mediaModel->showMediaPID($pid);
 
 		// description
-		$description = "";
-		if ($object['description'] != null) {
-			$paragraphs = explode("\n", $object['description']);
+		$description = $object['description'] ?? null;
+		if ($description != null) {
+			$paragraphs = explode("\n", $description);
+			$ps = "";
 			foreach ($paragraphs as $p) {
 				if (trim($p) != "") {
-					$description = $description . "<p>$p</p>";
+					$description = $ps . "<p>$p</p>";
 				}
 			}
 		}
+
 		$object['description'] = $description;
 
 		$f3->set('media', $media);
