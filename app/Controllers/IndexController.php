@@ -54,7 +54,6 @@ class IndexController extends Controller
 			}
 		}
 		$object['description'] = $description;
-		bdump($media);
 
 		$f3->set('media', $media);
 		$f3->set('object', $object);

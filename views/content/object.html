@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="row">
+	<div class="row mt-5">
 		<div class="col-12 col-md-7">
 			<h1>{{ @object.media_title }}</h1>
 			<check if="{{ @object.description }}">
@@ -12,21 +12,23 @@
 			</check>
 
 			<h2>Details</h2>
-			<table  class="table table-striped">
-				<tbody >
+			<table class="table table-striped">
+				<tbody>
 					<tr>
-						<th  class="col-4">Collection</th>
-						<td  class="col-8">
+						<th class="col-4">PID</th>
+						<td class="col-8">
+							<div>{{ @object.PID }}</div>
+						</td>
+					</tr>
+					<tr>
+						<th class="col-4">Collection</th>
+						<td class="col-8">
 							<div>{{ @object.collection_name_en }}</div>
 						</td>
 					</tr>
 					<tr>
 						<th>Creator</th>
 						<td>{{ @object.media_creator }}</td>
-					</tr>
-					<tr>
-						<th>Vernaculars from associated taxon</th>
-						<td>—</td>
 					</tr>
 					<check if="{{ @object.copyright }}">
 						<tr>
@@ -38,28 +40,39 @@
 			</table>
 		</div>
 		<div class="col-12 col-md-5">
-			<check if="{{ false }}">
-				<ul class="gallery-auto-fit list-unstyled mb-5">
-					<repeat group="{{ @images }}" value="{{ @image }}">
-						<li>
-							<a href="{{ 'viewerMirador', 'imgId=' . @image.iiif_id | alias }}" target="_blank">
-								<img src="{{ @imageServer . @image.iiif_id . '/full/240,/0/default.jpg' }}"
-									alt="{{ @image.media_title }}"
+			<check if="{{ @media }}">
+				<h2>Media</h2>
+				<ul class="gallery-auto-fit  gap-4 list-unstyled mb-5">
+					<repeat group="{{ @media }}" value="{{ @mediaItem }}" counter="{{ @counter }}">
+						<li class="d-flex flex-column bg-white">
+							<a href="{{ 'viewerMirador', 'imgId=' . @mediaItem.file_name . @mediaItem.suffix_iiif | alias }}?s={{ @counter }}" target="_blank">
+								<img src="{{ @imageServer . @mediaItem.file_name . @mediaItem.suffix_iiif . '/full/^!240,240/0/default.jpg' }}"
+									alt="{{ @mediaItem.media_title }}"
 									class="gallery-image">
 							</a>
-							<button class="position-absolute btn-icon bottom-0 end-0 translate-middle badge rounded-pill bg-info border-0"
-								title="{{ @image.media_title }}"
-								aria-label="Details"
-								data-bs-container="body"
-								data-bs-toggle="popover"
-								data-bs-trigger="focus"
-								data-bs-placement="auto"
-								data-bs-custom-class="custom-popover"
-								data-bs-content="{{ @image.description }}">
-								<svg class="light">
-									<use href="{{ @icons }}/fa-solid.svg#ellipsis"></use>
-								</svg>
-							</button>
+							<div class="bg-white px-3 py-2 d-flex justify-content-between">
+								<check if="{{ @mediaItem.media_title }}">
+									<true><small>{{ @mediaItem.media_title }}</small></true>
+									<false><small>{{ @mediaItem.file_name }}</small></false>
+								</check>
+								<exclude>
+									<span>
+										<button class="btn-icon badge rounded-pill bg-info border-0"
+											title="{{ @mediaItem.media_title }}"
+											aria-label="Details"
+											data-bs-container="body"
+											data-bs-toggle="popover"
+											data-bs-trigger="focus"
+											data-bs-placement="auto"
+											data-bs-custom-class="custom-popover"
+											data-bs-content="{{ @mediaItem.description }}">
+											<svg class="light">
+												<use href="{{ @icons }}/fa-solid.svg#ellipsis"></use>
+											</svg>
+										</button>
+									</span>
+								</exclude>
+							</div>
 						</li>
 					</repeat>
 				</ul>
