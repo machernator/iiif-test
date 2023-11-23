@@ -45,7 +45,7 @@
 				<ul class="gallery-auto-fit  gap-4 list-unstyled mb-5">
 					<repeat group="{{ @media }}" value="{{ @mediaItem }}" counter="{{ @counter }}">
 						<li class="d-flex flex-column bg-white">
-							<a href="{{ 'viewerMirador', 'imgId=' . @mediaItem.file_name . @mediaItem.suffix_iiif | alias }}?s={{ @counter }}" target="_blank">
+							<a href="{{ 'viewerMirador', 'imgId=' . @pid | alias }}?s={{ @counter }}" target="_blank">
 								<img src="{{ @imageServer . @mediaItem.file_name . @mediaItem.suffix_iiif . '/full/^!240,240/0/default.jpg' }}"
 									alt="{{ @mediaItem.media_title }}"
 									class="gallery-image">

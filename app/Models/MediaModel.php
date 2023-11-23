@@ -59,12 +59,12 @@ class MediaModel extends Model
 	 * @param string $pid
 	 * @return string
 	 */
-	public function manifestPID(string $pid): array
+	public function manifestPID(string $pid, int $startCanvasNr = 1): array
 	{
 		// Get all Data for current PID
 		$allMedia = $this->showMediaPID($pid);
 		// Create manifest
-		return $this->createManifest($pid, $allMedia);
+		return $this->createManifest($pid, $allMedia, $startCanvasNr);
 	}
 
 	/**
@@ -144,7 +144,7 @@ class MediaModel extends Model
 		return $metaData;
 	}
 
-	private function createManifest(string $id, array $data): array
+	private function createManifest(string $id, array $data, int $startCanvasNr = 1): array
 	{
 		// Create manifest
 		$manifest = $this->manifest;
@@ -171,8 +171,8 @@ class MediaModel extends Model
 			$canvas['height'] = $media['height'];
 			$canvas['width'] = $media['width'];
 			// set first canvas as start canvas
-			if ($canvasNr === 1) {
-				$manifest['sequences'][0]['startCanvas'] = $canvas['@id'];
+			if ($canvasNr === $startCanvasNr) {
+				$manifest['sequences'][0]['startCanvas'] = "{$server}{$media['PID']}/canvas/$startCanvasNr";
 			}
 			// calculate height of thumbnail
 			$tnHeight = round($media['height'] / $media['width'] * $this->thumbNailWidth);

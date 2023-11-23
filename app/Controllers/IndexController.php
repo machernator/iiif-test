@@ -34,7 +34,8 @@ class IndexController extends Controller
 
 	public function object(\Base $f3, array $params)
 	{
-		$pid = $params['pid'] ?? null;
+		$pid = $params['pid'];
+		$f3->set('pid', $pid);
 		$f3->set('sitetitle', "NHM Objects - $pid");
 		$f3->set('content', $this->content('object'));
 		$f3->set('contentSidebar', null);
@@ -56,13 +57,8 @@ class IndexController extends Controller
 		}
 
 		$object['description'] = $description;
-
 		$f3->set('media', $media);
 		$f3->set('object', $object);
-
-
-
-
 		echo $this->renderPage('index-single-col.html');
 	}
 

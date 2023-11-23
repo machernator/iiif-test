@@ -22,7 +22,7 @@ class ImageController extends Controller
 		header('Content-Type: application/json');
 		$id = $params['imgId'] ?? null;
 
-		$manifest = $this->mediaModel->manifestFilename($id);
+		$manifest = $this->mediaModel->manifestFilename(filename: $id);
 		if ($manifest === '') {
 			die('{"error": "Manifest not found"}');
 		}
@@ -41,7 +41,8 @@ class ImageController extends Controller
 		header("Access-Control-Allow-Origin", "*");
 		header('Content-Type: application/json');
 		$pid = $params['pid'] ?? null;
-		$manifest = $this->mediaModel->manifestPID($pid);
+		$startCanvasNr = $_GET['s'] ?? 1;
+		$manifest = $this->mediaModel->manifestPID(pid: $pid, startCanvasNr: $startCanvasNr);
 		echo json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 	}
 
@@ -49,13 +50,16 @@ class ImageController extends Controller
 	{
 		$id = $params['imgId'] ?? null;
 		$extension = pathinfo($id, PATHINFO_EXTENSION);
+
+		$startCanvasNr = $_GET['s'] ?? 1;
+
 		if ($extension && in_array((strtolower($extension)), ['jpg', 'jpeg', 'png', 'gif', 'jp2', 'webp'])) {
 			// $id is an image file name
 			$id = pathinfo($id, PATHINFO_FILENAME);
-			$manifestPath = "/$id/manifest.json";
+			$manifestPath = "/$id/manifest.json?s=$startCanvasNr";
 		} else {
 			// $id is not an image file name
-			$manifestPath = "/pid/$id/manifest.json";
+			$manifestPath = "/pid/$id/manifest.json?s=$startCanvasNr";
 		}
 
 		$f3->set('imgId', $id);
