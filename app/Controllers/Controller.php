@@ -75,10 +75,6 @@ abstract class Controller
 		$f3->set('main', $this->layout . 'main.html');
 		$f3->set('status', $this->components . 'app-status.html');
 		$f3->set('contentSidebar', 'sidebar-default');
-		// get Translations
-		// $tm = new TranslationModel();
-
-		// $f3->set('_tr', $tm->listTranslationLang($_SESSION['locale']));
 	}
 
 	/**

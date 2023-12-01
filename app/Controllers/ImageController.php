@@ -46,6 +46,13 @@ class ImageController extends Controller
 		echo json_encode($manifest, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 	}
 
+	/**
+	 * Show mirador viewer for IIIF Manifests
+	 *
+	 * @param \Base $f3
+	 * @param array $params
+	 * @return void
+	 */
 	public function viewerMirador(\Base $f3, array $params)
 	{
 		$id = $params['imgId'] ?? null;
