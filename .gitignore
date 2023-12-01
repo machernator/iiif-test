@@ -1,6 +1,8 @@
 .DS_Store
 tmp/*.php
+tmp/!.gitkeep
 tmp/cache/*.ser
+tmp/cache/!.gitkeep
 .vscode/
 .vscode/*
 resources/uploads/*
