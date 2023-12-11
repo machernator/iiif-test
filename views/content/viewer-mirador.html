@@ -29,9 +29,8 @@
 		window: {
 			allowTopMenuButton: true,
 			allowClose: false,
-			sideBarOpen: true,
 			allowFullscreen: true,
-			sideBarPanel: 'canvas',
+			sideBarPanel: 'info',
 			defaultView: 'single',
 			sideBarOpenByDefault: true,
 			sideBarOpen: true,
@@ -89,17 +88,27 @@
 				},
 			}
 		},
-		"workspaceControlPanel": {
+		workspaceControlPanel: {
 			enabled: false
 		},
-		"windows": [
+		windows: [
 			{
-				"loadedManifest": "{{ @manifestPath }}",
-				"canvasIndex": 1,
-				"thumbnailNavigationPosition": 'on',
-				"availableViews": ['ThumbnailsView', 'ImageView']
+				loadedManifest: "{{ @manifestPath }}",
+				canvasIndex: 1,
+				thumbnailNavigationPosition: 'on',
+				availableViews: ['ThumbnailsView', 'ImageView']
 			}
-		]
+		],
+		// windowObjects: [
+		// 	{
+		// 		loadedManifest: "{{ @manifestPath }}",
+		// 		viewType: 'ImageView',
+		// 	},
+		// 	{
+		// 		viewType: 'info',
+		// 		open: true
+		// 	}
+		// ]
 	});
 
 	// var loadingElement = document.createElement('div');
